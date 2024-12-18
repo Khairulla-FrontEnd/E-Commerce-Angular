@@ -1,0 +1,9 @@
+/* You can add global styles to this file, and also import other style files */
+@import "./app/styles/imports.scss";
+
+.title{
+    font-family:$title !important;
+}
+.heading{
+    font-family:$heading !important;
+}
