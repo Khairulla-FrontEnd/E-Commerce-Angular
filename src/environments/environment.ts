@@ -1,6 +1,5 @@
 
 export const environment = {
-    apiUrl:'',
-    assetsPath:'',
+    apiUrl:'https://api.bigcommerce.com',
     appThemeName:'Khair & Creed'
 }
