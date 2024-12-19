@@ -1,5 +1,6 @@
 import { Component } from "@angular/core";
 import { ButtonModule } from 'primeng/button';
+import { environment } from "../../../../environments/environment";
 
 @Component({
     selector: 'app-header',
@@ -15,4 +16,6 @@ export class HeaderComponent {
     setActive(index:number) {
         this.active = index;
     }
+    
+    protected readonly environment = environment;
 }
