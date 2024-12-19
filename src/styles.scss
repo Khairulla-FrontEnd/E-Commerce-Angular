@@ -7,3 +7,7 @@
 .heading{
     font-family:$heading !important;
 }
+.center{
+    display: grid;
+    place-items:center;
+}
