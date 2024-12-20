@@ -1,48 +1,46 @@
-<div class="d-flex">
-  <div class="">
-    <img
-      src="../../../assets/image/Side Image.png"
-      class="rounded mx-auto d-block"
-      alt="..."
-      width="805"
-      height="781"
-    />
-  </div>
-  <div
-    class="d-flex flex-column justify-content-center align-items-center w-100"
-  >
-    <form
-      (ngSubmit)="onSubmit()"
-      class="d-flex w-50 flex-column gap-3"
-      action=""
-    >
-      <div>
-        <input
-          class="form-control-plaintext border-bottom form-control-lg fs-6 pb-2"
-          [(ngModel)]="nameLogin"
-          type="text"
-          name="nameLogin"
-          placeholder="Email or Phone Number"
-        />
-      </div>
-      <div>
-        <input
-          class="form-control-plaintext border-bottom"
-          [(ngModel)]="passLogin"
-          type="password"
-          name="passLogin"
-          placeholder="Password"
-        />
-      </div>
-      <div class="d-flex justify-content-between">
-        <button (click)="onClick()" type="submit" class="btn btn-danger w-75">
-          Log in
-        </button>
-        <button type="button" class="btn btn-dark w-75">
-          Forget Password ?
-        </button>
-      </div>
-    </form>
+<div class="container">
+  <div class="row">
+    <div class="col d-xl-block d-none">
+      <img
+        src="../../../assets/image/Side Image.png"
+        width="805"
+        height="781"
+        alt=""
+      />
+    </div>
+    <div class="col align-self-center ps-5 m-xl-0 mt-4">
+      <form [formGroup]="profileForm" action="" (ngSubmit)="onSubmit()">
+        <div>
+          <h1>Log in to Exclusive</h1>
+          <p>Enter your details below</p>
+        </div>
+        <div>
+          <input
+            type="text"
+            class="form-control-plaintext border-bottom border-2"
+            placeholder="Email or Phone Number"
+            formControlName="nameLogin"
+          />
+        </div>
+        <div class="mt-3">
+          <input
+            type="password"
+            class="form-control-plaintext border-bottom border-2"
+            placeholder="Password"
+            formControlName="passLogin"
+          />
+        </div>
+        <div class="mt-3 d-flex justify-content-between">
+          <button
+            class="btn btn-danger"
+            [disabled]="!profileForm.valid"
+            type="submit"
+          >
+            Log In
+          </button>
+          <button class="btn btn-dark">Forget Password?</button>
+        </div>
+      </form>
+    </div>
   </div>
 </div>
-
