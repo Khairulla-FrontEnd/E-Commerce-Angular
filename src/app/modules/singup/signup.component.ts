@@ -12,8 +12,6 @@ import { HttpClient } from "@angular/common/http";
 export class SignupComponent implements OnInit{
     constructor(private http:HttpClient) { }
     ngOnInit(): void {
-        this.http.get('')
-        .subscribe((val:any) => console.log(val)) 
-        ;
+        
     }
 }
