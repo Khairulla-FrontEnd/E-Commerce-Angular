@@ -10,7 +10,10 @@ export const appConfig: ApplicationConfig = {
   providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes), provideAnimations(),
     providePrimeNG({
       theme:{
-        preset:Lara
+        preset:Lara,
+        options:{
+          darkModeSelector:'dark-mode'
+        }
       }
     }),
     provideHttpClient(withFetch())

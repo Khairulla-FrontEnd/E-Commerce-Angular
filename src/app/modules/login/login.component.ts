@@ -17,6 +17,7 @@ import { Router } from '@angular/router';
   styleUrl: './login.component.scss',
 })
 export class LoginComponent implements OnInit {
+  showErr:boolean = false;
   constructor(private router: Router) {}
 
   profileForm = new FormGroup({
@@ -24,13 +25,11 @@ export class LoginComponent implements OnInit {
     passLogin: new FormControl('', Validators.required),
   });
   onSubmit() {
-    console.log(this.profileForm.value);
-
-    if (this.profileForm.value.nameLogin === this.userName.email) {
-      console.log(true);
+    if (this.profileForm.value.nameLogin === this.userName.email
+       && this.profileForm.value.passLogin === this.userName.password) {
       this.router.navigate(['/home']);
     } else {
-      console.log(false);
+      this.showErr = true;
     }
   }
   realUser: any;
