@@ -1,10 +1,11 @@
 import { Component, OnInit } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
+import { RouterLink } from "@angular/router";
 
 @Component({
     selector:'app-signup',
     standalone:true,
-    imports:[],
+    imports:[RouterLink],
     templateUrl:'./signup.component.html',
     styleUrl:'./signup.component.scss'
 })
