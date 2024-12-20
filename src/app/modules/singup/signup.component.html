@@ -15,8 +15,17 @@
                 (ngSubmit)="onSubmit()"
                 >
                     <input type="text" formControlName="name" class="form-control-plaintext border-bottom" placeholder="Name">
-                    <input type="text" formControlName="email" class="form-control-plaintext border-bottom" placeholder="Email">
+                    <input type="email" formControlName="email" class="form-control-plaintext border-bottom" placeholder="Email">
                     <input type="password" formControlName="password" class="form-control-plaintext border-bottom" placeholder="Password">
+                    <div class="border rounded-3 p-3">
+                        <label for="avatar">
+                            Enter profile image
+                        </label>
+                        <input type="file" id="avatar" class="form-control" formControlName="avatar">
+                    </div>
+                    @if(showErr){
+                        <p class="text-danger">Please, enter a valid input!</p>
+                    }
                     <div class="d-flex flex-column justify-content-center gap-4">
                         <button class="btn btn-danger text-white py-2 title" type="submit" [class]="!form.valid ? 'disabled' : ''">Create Account</button>
                         <button class="btn btn-info title border rounded-3 border-2 py-2
