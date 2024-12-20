@@ -31,14 +31,14 @@ export class SignupComponent implements OnInit{
         if(this.userData){
             this.router.navigate(['/home']);
         }else{
-            this.service.isShowAccount = false;
+            this.service.isShowAccount.set(false);
         }
     }
     onSubmit() { 
         this.apiService.post('users',this.form.value)
         .subscribe({
             next:(val) => {
-                this.service.isShowAccount = true;
+                this.service.isShowAccount.set(true);
                 localStorage.setItem('userData',JSON.stringify(val));
                 this.router.navigate(['/home']);
             },

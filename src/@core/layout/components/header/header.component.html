@@ -32,7 +32,7 @@
           <i class="pi pi-search" role="button"></i>
         </form>
       </div>
-      @if(service.isShowAccount){
+      @if(service.isShowAccount()){
         <div class="d-flex align-items-center gap-4">
           <i class="pi pi-heart fs-4"></i>
           <i class="pi pi-shopping-cart fs-4"
@@ -42,6 +42,7 @@
             <img [src]="imgUrl"
             (click)="showAvatar(-1)"
             role="button"
+            id="avatar"
             alt="avatar" width="42" height="42" class="rounded-circle object-fit-cover">
             @if(isShow){
               <div class="account-list text-white position-absolute p-3 rounded-3">
