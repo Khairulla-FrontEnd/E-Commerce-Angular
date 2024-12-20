@@ -14,7 +14,7 @@ export const layoutRoutes:Routes = [
         component:SignupComponent
     },
     {
-  path:'login',
+    path:'login',
     component:LoginComponent
     },
     ...homeRoutes

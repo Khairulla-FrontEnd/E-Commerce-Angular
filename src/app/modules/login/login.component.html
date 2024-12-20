@@ -29,6 +29,9 @@
             placeholder="Password"
             formControlName="passLogin"
           />
+          @if(showErr){ 
+            <p class="text-danger">Password or Email is incorrect!</p>
+          }
         </div>
         <div class="mt-3 d-flex justify-content-between">
           <button

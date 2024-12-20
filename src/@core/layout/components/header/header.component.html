@@ -11,25 +11,57 @@
             <li class="nav-item">
               <a class="nav-link active title"
               aria-current="page"
-              href="#"
+              role="button"
               >{{link}}</a>
+              <div class="border-bottom border-black"></div>
             </li>
           }@else {
             <li class="nav-item">
               <a class="nav-link title"
-              href="#"
+              role="button"
               (click)="setActive($index)"
               >{{link}}</a>
+              <div class="border-bottom border-black inactive"></div>
             </li>
           }
         }
       </ul>
-      <div class="w-25">
+      <div class="w-25 pe-4">
         <form class="d-flex align-items-center rounded-2 px-3 flex-nowrap input-search" role="search">
           <input class="form-control-plaintext title" type="search" placeholder="What are you looking for?" aria-label="Search">
           <i class="pi pi-search" role="button"></i>
         </form>
       </div>
+      @if(service.isShowAccount){
+        <div class="d-flex align-items-center gap-4">
+          <i class="pi pi-heart fs-4"></i>
+          <i class="pi pi-shopping-cart fs-4"
+          severity="contrast"
+          pBadge value="2"></i>
+          <div class="position-relative">
+            <img [src]="imgUrl"
+            (click)="showAvatar(-1)"
+            role="button"
+            alt="avatar" width="42" height="42" class="rounded-circle object-fit-cover">
+            @if(isShow){
+              <div class="account-list text-white position-absolute p-3 rounded-3">
+                @for (item of items; track $index) {
+                  <div class="inter rounded-2 d-flex align-items-center"
+                  (click)="showAvatar($index)"
+                  >
+                    <div class="d-flex gap-3">
+                      <i [class]="item.icon" class="align-self-start pt-1"></i>
+                      <p class="title align-self-center text-nowrap">
+                        {{item.label}}
+                      </p>
+                    </div>
+                  </div>
+                }
+              </div>
+            }
+          </div>
+        </div>
+      }
     </div>
   </div>
 </nav>
