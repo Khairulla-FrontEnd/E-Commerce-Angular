@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -6,7 +6,7 @@ import {
   Validators,
   ReactiveFormsModule,
 } from '@angular/forms';
-
+import { LayoutService } from '../../../@core/layout/layout.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -20,13 +20,17 @@ export class LoginComponent implements OnInit {
   showErr:boolean = false;
   constructor(private router: Router) {}
 
+  service = inject(LayoutService);
   profileForm = new FormGroup({
     nameLogin: new FormControl('', Validators.required),
     passLogin: new FormControl('', Validators.required),
   });
   onSubmit() {
     if (this.profileForm.value.nameLogin === this.userName.email
-       && this.profileForm.value.passLogin === this.userName.password) {
+       && this.profileForm.value.passLogin === this.userName.password
+      ) {
+        this.service.isShowAccount.set(true);
+        localStorage.setItem('userData',JSON.stringify(this.userName));
       this.router.navigate(['/home']);
     } else {
       this.showErr = true;

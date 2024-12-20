@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from "@angular/core";
+import { Component, HostListener, inject, OnInit } from "@angular/core";
 import { ButtonModule } from 'primeng/button';
 import { environment } from "../../../../environments/environment";
 import { BadgeModule } from 'primeng/badge';
@@ -54,16 +54,24 @@ export class HeaderComponent implements OnInit{
     ngOnInit(): void {
         this.userData = localStorage.getItem('userData');
         if(this.userData){
-            this.service.isShowAccount = true;
+            this.service.isShowAccount.set(true);
             this.userData = JSON.parse(this.userData);
             this.imgUrl = this.userData.avatar;
+        }else{
+            this.service.isShowAccount.set(false);
+        }
+    }
+    @HostListener('window:click',['$event'])
+    onClick(event:any):void {
+        if(event.target.id !== 'avatar'){
+        this.isShow = false;
         }
     }
     showAvatar(i:number):void{
         this.isShow = !this.isShow;
         if(i === this.items.length - 1){
-            this.router.navigate(['/signup']);
             localStorage.removeItem('userData');
+            this.router.navigate(['/signup']);
         }
     }
     isShowAccount:boolean = false;
