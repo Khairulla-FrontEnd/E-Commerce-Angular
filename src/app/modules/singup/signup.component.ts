@@ -23,7 +23,7 @@ export class SignupComponent{
         "name": new FormControl('',Validators.required),
         "email": new FormControl('', Validators.required),
         "password":new FormControl('', Validators.required),
-        "avatar":new FormControl('',Validators.required)
+        "avatar":new FormControl('https://picsum.photos/800',Validators.required)
     });
     onSubmit() { 
         this.apiService.post('users',this.form.value)
