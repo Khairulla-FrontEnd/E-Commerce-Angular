@@ -1,10 +1,16 @@
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import {
+  FormControl,
+  FormGroup,
+  FormsModule,
+  Validators,
+  ReactiveFormsModule
+} from '@angular/forms';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule,ReactiveFormsModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
 })
@@ -12,11 +18,11 @@ export class LoginComponent {
   nameLogin: string = '';
   passLogin: string = '';
 
+  profileForm = new FormGroup({
+    nameLogin: new FormControl('', Validators.required),
+    passLogin: new FormControl('', Validators.required),
+  });
   onSubmit() {
-    this.nameLogin;
-    this.passLogin;
-  }
-  onClick() {
-    console.log([this.nameLogin, this.passLogin]);
+    console.log(this.profileForm.value);
   }
 }
