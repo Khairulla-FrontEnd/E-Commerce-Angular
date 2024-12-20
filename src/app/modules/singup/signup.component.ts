@@ -23,6 +23,8 @@ export class SignupComponent{
     });
     onSubmit() { 
         this.apiService.post('users',this.form.value)
-        .subscribe((val:any) => console.log(val));
+            .subscribe((val: any) => {
+                localStorage.setItem('userData', JSON.stringify(val));
+        });
     }
 }
