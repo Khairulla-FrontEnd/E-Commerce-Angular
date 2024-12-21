@@ -1,5 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import "./app/styles/imports.scss";
+@import "../node_modules/swiper/swiper-bundle.css";
 
 .title{
     font-family:$title !important;
@@ -11,3 +12,13 @@
     display: grid;
     place-items:center;
 }
+.swiper-pagination-bullet{
+    background-color: gray !important;
+    opacity: 1 !important;
+    width: 12px !important;
+    height: 12px !important;
+  }
+  .swiper-pagination-bullet-active{
+    background-color: $secondary2 !important;
+    border:2px solid white;
+  }
