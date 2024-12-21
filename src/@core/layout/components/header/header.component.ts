@@ -23,6 +23,7 @@ export class HeaderComponent implements OnInit{
     headerLinks:string[] = ['Home','Contact','About','Sign Up'];   
     active:number = 0;
     userData:any;
+    isLoggedIn:any;
     service = inject(LayoutService);
     imgUrl:string = '';
     items = [
@@ -53,10 +54,11 @@ export class HeaderComponent implements OnInit{
     }
     ngOnInit(): void {
         this.userData = localStorage.getItem('userData');
-        if(this.userData){
-            this.service.isShowAccount.set(true);
+        this.isLoggedIn = localStorage.getItem('isLoggedIn');
+        if(this.isLoggedIn === 'true'){
             this.userData = JSON.parse(this.userData);
             this.imgUrl = this.userData.avatar;
+            this.service.isShowAccount.set(true);
         }else{
             this.service.isShowAccount.set(false);
         }
@@ -70,7 +72,7 @@ export class HeaderComponent implements OnInit{
     showAvatar(i:number):void{
         this.isShow = !this.isShow;
         if(i === this.items.length - 1){
-            localStorage.removeItem('userData');
+            localStorage.removeItem('isLoggedIn');
             this.router.navigate(['/signup']);
         }
     }
