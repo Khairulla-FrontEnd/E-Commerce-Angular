@@ -39,34 +39,42 @@
               severity="contrast"
               pBadge value="2"></i>
               <div class="position-relative d-lg-block d-none">
-                <img [src]="imgUrl"
-                (click)="showAvatar(-1)"
-                role="button"
-                id="avatar"
-                alt="avatar" width="42" height="42" class="rounded-circle object-fit-cover">
-                @if(isShow){
-                  <div class="account-list text-white position-absolute p-3 rounded-3">
-                    @for (item of items; track $index) {
-                      <div class="inter rounded-2 d-flex align-items-center"
-                      (click)="showAvatar($index)"
-                      >
-                        <div class="d-flex gap-3">
-                          <i [class]="item.icon" class="align-self-start pt-1"></i>
-                          <p class="title align-self-center text-nowrap">
-                            {{item.label}}
-                          </p>
+                <img [src]="imgUrl" alt="" class="invisible-img" (load)="setLoad()">
+                @if(isLoading){
+                  <p-skeleton size="42px" shape="circle"></p-skeleton>
+                }@else {
+                  <img [src]="imgUrl"
+                  (click)="showAvatar(-1)"
+                  role="button"
+                  id="avatar"
+                  alt="avatar" width="42" height="42" class="rounded-circle object-fit-cover">
+                  @if(isShow){
+                    <div class="account-list text-white position-absolute p-3 rounded-3">
+                      @for (item of items; track $index) {
+                        <div class="inter rounded-2 d-flex align-items-center"
+                        (click)="showAvatar($index)"
+                        >
+                          <div class="d-flex gap-3">
+                            <i [class]="item.icon" class="align-self-start pt-1"></i>
+                            <p class="title align-self-center text-nowrap">
+                              {{item.label}}
+                            </p>
+                          </div>
                         </div>
-                      </div>
-                    }
-                  </div>
+                      }
+                    </div>
+                  }
                 }
               </div>
             </div>
           }
         </div>
-  
-      <div class="d-lg-none d-block ms-auto me-2">
-        <div class="position-relative d-lg-none d-block">
+  @if(service.isShowAccount()){
+    <div class="d-lg-none d-block ms-auto me-2">
+      <div class="position-relative d-lg-none d-block">
+        @if(isLoading){
+          <p-skeleton size="42px" shape="circle"></p-skeleton>
+        }@else {
           <img [src]="imgUrl"
           (click)="showAvatar(-1)"
           role="button"
@@ -88,7 +96,9 @@
               }
             </div>
           }
-        </div>
+        }
       </div>
+    </div>
+  }
   </div>
 </nav>
