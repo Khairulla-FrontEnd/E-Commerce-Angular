@@ -4,12 +4,15 @@ import { ApiService } from "../../shared/service/api.service";
 import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from "@angular/router";
 import { LayoutService } from "../../../@core/layout/layout.service";
+import { ProgressSpinner } from 'primeng/progressspinner';
 
 @Component({
     selector:'app-signup',
     standalone:true,
-    imports:[RouterLink,
-        ReactiveFormsModule
+    imports:[
+        RouterLink,
+        ReactiveFormsModule,
+        ProgressSpinner
     ],
     templateUrl:'./signup.component.html',
     styleUrl:'./signup.component.scss'
@@ -20,6 +23,7 @@ export class SignupComponent implements OnInit{
     userData:any;
     showErr:boolean = false;
     isLoggedIn:any;
+    isLoading:boolean = false;
     service = inject(LayoutService);
     form:FormGroup = new FormGroup({
         "name": new FormControl('',Validators.required),
@@ -37,12 +41,14 @@ export class SignupComponent implements OnInit{
         }
     }
     onSubmit() { 
+        this.isLoading = true;
         this.apiService.post('users',this.form.value)
         .subscribe({
             next:(val) => {
                 this.service.isShowAccount.set(true);
                 localStorage.setItem('userData',JSON.stringify(val));
                 localStorage.setItem('isLoggedIn','true');
+                this.isLoading = false;
                 this.router.navigate(['/home']);
             },
             error:(err) => {

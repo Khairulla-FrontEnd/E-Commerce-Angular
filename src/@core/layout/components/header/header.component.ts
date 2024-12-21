@@ -5,6 +5,8 @@ import { BadgeModule } from 'primeng/badge';
 import { OverlayBadgeModule } from 'primeng/overlaybadge';
 import { Router } from "@angular/router";
 import { LayoutService } from "../../layout.service";
+import { Skeleton } from 'primeng/skeleton';
+import { CommonModule } from "@angular/common";
 
 @Component({
     selector: 'app-header',
@@ -12,7 +14,9 @@ import { LayoutService } from "../../layout.service";
     imports: [
         ButtonModule,
         BadgeModule,
-        OverlayBadgeModule
+        OverlayBadgeModule,
+        Skeleton,
+        CommonModule
     ],
     templateUrl: './header.component.html',
     styleUrl: './header.component.scss'
@@ -23,8 +27,12 @@ export class HeaderComponent implements OnInit{
     headerLinks:string[] = ['Home','Contact','About','Sign Up'];   
     active:number = 0;
     userData:any;
+    isLoading:boolean = true;
     isLoggedIn:any;
     service = inject(LayoutService);
+    setLoad():void{
+        this.isLoading = false;
+    }
     imgUrl:string = '';
     items = [
         {
