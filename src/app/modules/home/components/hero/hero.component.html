@@ -1,18 +1,52 @@
     <section id="hero">
     <div class="container">
         <div class="row">
-            <div class="col">
+            <div class="d-lg-block d-none col-auto border-end pt-4" style="width:250px">
                 @for (list of lists; track $index) {
                     @if($index < 2){
-                        <p-select [options]="list.options" [placeholder]="list.placeholder"></p-select>
+                        <select class="form-select border-0 p-0 title mb-3"
+                        role="button"
+                        >
+                            <option selected>{{list.placeholder}}</option>
+                            @for (item of list.options; track $index) {
+                                <option [value]="item.code">{{item.name}}</option>
+                            }
+                        </select>
                     }@else {
                         <p class="title">{{list}}</p>
                     }
                 }
             </div>
-            <div class="col">
-                
+                <div class="m-lg-4 m-0 swiper p-lg-0 pt-lg-0 pt-4 p-2 mySwiper col text-white">
+                    <div class="swiper-wrapper">
+                        @for (item of [].constructor(5); track $index) {
+                            <div class="swiper-slide ps-4 overflow-hidden">
+                              <div class="row cards" style="position:sticky; left:100px; top:50px">
+                                  <div class="col">
+                                      <div class="d-flex gap-3">
+                                          <i class="pi pi-apple fs-1"></i>
+                                          <p class="title pt-2 text-nowrap">iPhone 14 Series</p>
+                                      </div>
+                                      <h1 class="heading text-nowrap">
+                                          Up to 10%<br> off Voucher
+                                      </h1>
+                                      <div class="d-flex shop align-items-center gap-2">
+                                          <div>
+                                              <p class="title fs-4 text-nowrap">Show Now</p>
+                                              <div class="bg-white bb" style="height:2px"></div>
+                                          </div>
+                                          <i class="pi pi-arrow-right pb-3"></i>
+                                      </div>
+                                  </div>
+                                  <div class="col">
+                                      <img ngSrc="./assets/media/hero/hero-img.png" class="object-fit-cover hero-img" alt="hero-img" width="300" height="260" priority>
+                                  </div>
+                              </div>
+                            </div>
+                        }
+                    </div>
+                    <div class="swiper-pagination"></div>
+                  </div>
             </div>
-        </div>
     </div>
 </section>

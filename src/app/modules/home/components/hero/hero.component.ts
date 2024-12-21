@@ -1,15 +1,27 @@
-import { Component } from "@angular/core";
-import { Select } from 'primeng/select';
+import { Component, OnInit } from "@angular/core";
+import { Pagination, Navigation } from 'swiper/modules';
+import Swiper from 'swiper/bundle';
+import { NgOptimizedImage } from "@angular/common";
 
 @Component({
     selector:'app-hero',
     standalone:true,
-    imports:[Select],
+    imports:[NgOptimizedImage],
     templateUrl:'./hero.component.html',
     styleUrl:'./hero.component.scss',
 })
 
-export class HeroComponent {
+export class HeroComponent implements OnInit{
+    ngOnInit(): void {
+        var swiper = new Swiper('.mySwiper',{
+            pagination: {
+                el: ".swiper-pagination",
+                clickable:true
+              },
+            modules:[Pagination, Navigation],
+            autoplay:true
+        })
+    }
     lists:any = [
         {
             placeholder:"Woman's Fashion",
