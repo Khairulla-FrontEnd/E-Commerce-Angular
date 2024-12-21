@@ -1,0 +1,18 @@
+<section id="hero">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                @for (list of lists; track $index) {
+                    @if($index < 2){
+                        <p-select [options]="list.options" [placeholder]="list.placeholder"></p-select>
+                    }@else {
+                        <p class="title">{{list}}</p>
+                    }
+                }
+            </div>
+            <div class="col">
+                
+            </div>
+        </div>
+    </div>
+</section>
