@@ -1,68 +1,98 @@
 <nav class="navbar navbar-expand-lg border-bottom">
   <div class="container">
     <a class="navbar-brand heading fw-bold fs-4" href="#">{{environment.appThemeName}}</a>
-    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav gap-3 mx-auto mb-2 mb-lg-0">
-        @for (link of headerLinks; track $index) {
-          @if($index === active){
-            <li class="nav-item">
-              <a class="nav-link active title"
-              aria-current="page"
-              role="button"
-              >{{link}}</a>
-              <div class="border-bottom border-black"></div>
-            </li>
-          }@else {
-            <li class="nav-item">
-              <a class="nav-link title"
-              role="button"
-              (click)="setActive($index)"
-              >{{link}}</a>
-              <div class="border-bottom border-black inactive"></div>
-            </li>
-          }
-        }
-      </ul>
-      <div class="w-25 pe-4">
-        <form class="d-flex align-items-center rounded-2 px-3 flex-nowrap input-search" role="search">
-          <input class="form-control-plaintext title" type="search" placeholder="What are you looking for?" aria-label="Search">
-          <i class="pi pi-search" role="button"></i>
-        </form>
-      </div>
-      @if(service.isShowAccount()){
-        <div class="d-flex align-items-center gap-4">
-          <i class="pi pi-heart fs-4"></i>
-          <i class="pi pi-shopping-cart fs-4"
-          severity="contrast"
-          pBadge value="2"></i>
-          <div class="position-relative">
-            <img [src]="imgUrl"
-            (click)="showAvatar(-1)"
-            role="button"
-            id="avatar"
-            alt="avatar" width="42" height="42" class="rounded-circle object-fit-cover">
-            @if(isShow){
-              <div class="account-list text-white position-absolute p-3 rounded-3">
-                @for (item of items; track $index) {
-                  <div class="inter rounded-2 d-flex align-items-center"
-                  (click)="showAvatar($index)"
-                  >
-                    <div class="d-flex gap-3">
-                      <i [class]="item.icon" class="align-self-start pt-1"></i>
-                      <p class="title align-self-center text-nowrap">
-                        {{item.label}}
-                      </p>
-                    </div>
+    <div class="d-lg-none d-flex">
+      <div class="d-lg-none d-block">
+        <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav gap-3 mx-auto mb-2 mb-lg-0">
+            @for (link of headerLinks; track $index) {
+              @if($index === active){
+                <li class="nav-item">
+                  <a class="nav-link active title"
+                  aria-current="page"
+                  role="button"
+                  >{{link}}</a>
+                  <div class="border-bottom border-black"></div>
+                </li>
+              }@else {
+                <li class="nav-item">
+                  <a class="nav-link title"
+                  role="button"
+                  (click)="setActive($index)"
+                  >{{link}}</a>
+                  <div class="border-bottom border-black inactive"></div>
+                </li>
+              }
+            }
+          </ul>
+          <div class="w-25 pe-4">
+            <form class="d-flex align-items-center rounded-2 px-3 flex-nowrap input-search" role="search">
+              <input class="form-control-plaintext title" type="search" placeholder="What are you looking for?" aria-label="Search">
+              <i class="pi pi-search" role="button"></i>
+            </form>
+          </div>
+          @if(service.isShowAccount()){
+            <div class="d-flex align-items-center gap-4 mt-lg-0 mt-4">
+              <i class="pi pi-heart fs-4"></i>
+              <i class="pi pi-shopping-cart fs-4"
+              severity="contrast"
+              pBadge value="2"></i>
+              <div class="position-relative d-lg-block d-none">
+                <img [src]="imgUrl"
+                (click)="showAvatar(-1)"
+                role="button"
+                id="avatar"
+                alt="avatar" width="42" height="42" class="rounded-circle object-fit-cover">
+                @if(isShow){
+                  <div class="account-list text-white position-absolute p-3 rounded-3">
+                    @for (item of items; track $index) {
+                      <div class="inter rounded-2 d-flex align-items-center"
+                      (click)="showAvatar($index)"
+                      >
+                        <div class="d-flex gap-3">
+                          <i [class]="item.icon" class="align-self-start pt-1"></i>
+                          <p class="title align-self-center text-nowrap">
+                            {{item.label}}
+                          </p>
+                        </div>
+                      </div>
+                    }
                   </div>
                 }
               </div>
-            }
-          </div>
+            </div>
+          }
         </div>
-      }
+  
+      </div>
+      <div class="d-lg-none d-block">
+        <div class="position-relative d-lg-none d-block">
+          <img [src]="imgUrl"
+          (click)="showAvatar(-1)"
+          role="button"
+          id="avatar"
+          alt="avatar" width="42" height="42" class="rounded-circle object-fit-cover">
+          @if(isShow){
+            <div class="account-list text-white position-absolute p-3 rounded-3">
+              @for (item of items; track $index) {
+                <div class="inter rounded-2 d-flex align-items-center"
+                (click)="showAvatar($index)"
+                >
+                  <div class="d-flex gap-3">
+                    <i [class]="item.icon" class="align-self-start pt-1"></i>
+                    <p class="title align-self-center text-nowrap">
+                      {{item.label}}
+                    </p>
+                  </div>
+                </div>
+              }
+            </div>
+          }
+        </div>
+      </div>
     </div>
   </div>
 </nav>

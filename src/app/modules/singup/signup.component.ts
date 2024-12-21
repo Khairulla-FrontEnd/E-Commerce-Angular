@@ -19,6 +19,7 @@ export class SignupComponent implements OnInit{
     constructor(private apiService:ApiService, private router:Router) { }
     userData:any;
     showErr:boolean = false;
+    isLoggedIn:any;
     service = inject(LayoutService);
     form:FormGroup = new FormGroup({
         "name": new FormControl('',Validators.required),
@@ -28,7 +29,8 @@ export class SignupComponent implements OnInit{
     });
     ngOnInit(): void {
         this.userData = localStorage.getItem('userData');
-        if(this.userData){
+        this.isLoggedIn = localStorage.getItem('isLoggedIn');
+        if(this.isLoggedIn === 'true'){
             this.router.navigate(['/home']);
         }else{
             this.service.isShowAccount.set(false);
@@ -40,6 +42,7 @@ export class SignupComponent implements OnInit{
             next:(val) => {
                 this.service.isShowAccount.set(true);
                 localStorage.setItem('userData',JSON.stringify(val));
+                localStorage.setItem('isLoggedIn','true');
                 this.router.navigate(['/home']);
             },
             error:(err) => {

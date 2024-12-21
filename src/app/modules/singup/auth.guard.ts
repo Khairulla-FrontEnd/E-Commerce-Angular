@@ -7,8 +7,8 @@ import { Injectable } from "@angular/core";
 
 export class AuthGuard {
     canActivate(){
-        const userData = localStorage.getItem('userData');
-        if(!userData){
+        const userData = localStorage.getItem('isLoggedIn');
+        if(userData !== 'true'){
             return false;
         }else{
             return true;

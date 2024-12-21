@@ -25,13 +25,17 @@ export class LoginComponent implements OnInit {
     nameLogin: new FormControl('', Validators.required),
     passLogin: new FormControl('', Validators.required),
   });
+  isLoggedIn:any;
   onSubmit() {
+    this.isLoggedIn = localStorage.getItem('isLoggedIn');
     if (this.profileForm.value.nameLogin === this.userName.email
        && this.profileForm.value.passLogin === this.userName.password
+       || this.isLoggedIn === 'true'
       ) {
         this.service.isShowAccount.set(true);
+        localStorage.setItem('isLoggedIn','true');
         localStorage.setItem('userData',JSON.stringify(this.userName));
-      this.router.navigate(['/home']);
+        this.router.navigate(['/home']);
     } else {
       this.showErr = true;
     }
@@ -41,8 +45,12 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.userName = localStorage.getItem('userData');
+    this.isLoggedIn = localStorage.getItem('isLoggedIn');
     if (this.userName) {
       this.userName = JSON.parse(this.userName);
+    }
+    if(this.isLoggedIn === 'true') {
+      this.router.navigate(['/home']);
     }
   }
 }
