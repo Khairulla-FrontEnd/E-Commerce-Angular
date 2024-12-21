@@ -1,9 +1,7 @@
 <nav class="navbar navbar-expand-lg border-bottom">
   <div class="container">
     <a class="navbar-brand heading fw-bold fs-4" href="#">{{environment.appThemeName}}</a>
-    <div class="d-lg-none d-flex">
-      <div class="d-lg-none d-block">
-        <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler border-0 order-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -67,8 +65,7 @@
           }
         </div>
   
-      </div>
-      <div class="d-lg-none d-block">
+      <div class="d-lg-none d-block ms-auto me-2">
         <div class="position-relative d-lg-none d-block">
           <img [src]="imgUrl"
           (click)="showAvatar(-1)"
@@ -93,6 +90,5 @@
           }
         </div>
       </div>
-    </div>
   </div>
 </nav>
