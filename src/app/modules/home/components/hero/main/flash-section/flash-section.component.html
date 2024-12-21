@@ -1,0 +1,47 @@
+<div class="container mt-5">
+  <div class="flash-sales mb-4 d-flex justify-content-between">
+    <h2>Today's <span class="highlight">Flash Sales</span></h2>
+    <div class="d-flex gap-2">
+      <button class="btn btn-light left">
+        <i class="pi pi-arrow-left"></i>
+      </button>
+      <button class="btn btn-light right">
+        <i class="pi pi-arrow-right"></i>
+      </button>
+    </div>
+  </div>
+
+  <div class="swiper mySwiper">
+    <div class="swiper-wrapper">
+      @for (product of products; track $index) {
+      <div class="swiper-slide">
+        <div class="product-card">
+          <div class="position-relative">
+            <div>
+              <img
+                [src]="product.images[1]"
+                class="product-image rounded-2"
+                width="270"
+                height="250"
+                [alt]="product.title"
+              />
+            </div>
+            <button
+              class="btn btn-sm position-absolute top-0 end-0 star m-2"
+              (click)="starClick(starbtn)"
+              #starbtn
+            >
+              <i class="bi bi-heart"></i>
+            </button>
+          </div>
+          <div class="pt-2 px-1">
+            <h5 class="product-title fs-6">{{ product.title }}</h5>
+            <p class="product-price">${{ product.price }}</p>
+          </div>
+        </div>
+      </div>
+      }
+    </div>
+  </div>
+  <div class="text-center mt-4"></div>
+</div>

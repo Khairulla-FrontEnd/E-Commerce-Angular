@@ -7,7 +7,6 @@ export const BASE_URL = environment.apiUrl;
 
 @Injectable({ providedIn:'root' })
 
-
 export class ApiService {
     constructor(public http:HttpClient) { }
     get(prefix:string, params: any = {}) {
