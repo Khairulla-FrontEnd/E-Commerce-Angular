@@ -13,7 +13,7 @@ import { NgOptimizedImage } from "@angular/common";
 
 export class HeroComponent implements OnInit{
     ngOnInit(): void {
-        var swiper = new Swiper('.mySwiper',{
+        var swiper = new Swiper('.mySwiper2',{
             pagination: {
                 el: ".swiper-pagination",
                 clickable:true
