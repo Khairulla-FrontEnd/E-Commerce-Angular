@@ -4,7 +4,6 @@
     display: block;
     object-fit: cover;
   }
-
   .swiper {
     background: $text-dark;
   }
@@ -25,4 +24,7 @@
       width:200px;
       height: 160px;
     }
+  }
+  .list:hover{
+    text-decoration: underline;
   }
