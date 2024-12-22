@@ -1,0 +1,18 @@
+@import "../../../../app/styles/imports.scss";
+
+*{
+    color:white;
+    text-wrap:nowrap !important;
+}
+footer{
+    background-color:black;
+}
+.text-undr:hover{
+    text-decoration: underline;
+}
+@media (max-width:$xl){
+    .justify-content-between{
+        justify-content:start !important;
+        gap:20px;
+    }
+}

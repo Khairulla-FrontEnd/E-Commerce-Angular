@@ -1,1 +1,31 @@
-<h1>THIS IS WISHLIST</h1>
+<section id="wishlist">
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-center mt-5">
+            <h5 class="title">Wishlist (4)</h5>
+                <p-button 
+                [style]="{color:'black', border:'2px solid black', background:'white'}"
+                severity="secondary" 
+                label="Move All To Bag"
+                />
+        </div>
+        <div class="d-flex flex-wrap align-items-center gap-4 my-4">
+            @for (product of products; track $index) {
+                    <app-product-card
+                    [product]="product"
+                    />
+            }    
+        </div>
+        <div class="d-flex justify-content-between align-items-center mb-5">
+            <div class="d-flex align-items-center gap-2">
+                <button class="btn btn-danger pt-5">
+                </button>
+                <h5 class="title">Just For You</h5>
+            </div>
+            <p-button 
+                [style]="{color:'black', border:'2px solid black', background:'white'}"
+                severity="secondary" 
+                label="See All"
+                />
+        </div>
+    </div>
+</section>

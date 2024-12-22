@@ -3,11 +3,12 @@ import { Navigation, Pagination } from 'swiper/modules';
 import Swiper from 'swiper';
 import { ApiService } from '../../../../../../shared/service/api.service';
 import { map } from 'rxjs';
+import { ProductCardComponent } from '../../../../../../shared/components/product-card/product-card.component';
 
 @Component({
   selector: 'app-flash-section',
   standalone: true,
-  imports: [],
+  imports: [ProductCardComponent],
   templateUrl: './flash-section.component.html',
   styleUrl: './flash-section.component.scss',
 })
@@ -27,6 +28,7 @@ export class FlashSectionComponent implements OnInit {
               && item !== "]")
               .join("");
               item.images = newImg;
+              item.icon = "bi-heart";
               if(newImg === "https://placeimg.com/640/480/any" || newImg === "www.apple.com"){
                 return;
               }else{
@@ -49,15 +51,5 @@ export class FlashSectionComponent implements OnInit {
       },
       modules: [Navigation, Pagination],
     });
-  }
-
-  starClick(starbtn: HTMLElement) {
-    starbtn.classList.toggle('active');
-    if (starbtn.querySelector('i')?.className === 'bi bi-heart') {
-      starbtn.querySelector('i')?.classList.remove('bi-heart');
-    } else {
-      starbtn.querySelector('i')?.classList.add('bi-heart');
-    }
-    starbtn.querySelector('i')?.classList.toggle('bi-heart-fill');
   }
 }
