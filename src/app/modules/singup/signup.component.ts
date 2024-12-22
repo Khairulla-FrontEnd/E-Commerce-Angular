@@ -50,6 +50,7 @@ export class SignupComponent implements OnInit{
                 localStorage.setItem('isLoggedIn','true');
                 this.isLoading = false;
                 this.router.navigate(['/home']);
+                window.location.reload();
             },
             error:(err) => {
                 this.showErr = true;
