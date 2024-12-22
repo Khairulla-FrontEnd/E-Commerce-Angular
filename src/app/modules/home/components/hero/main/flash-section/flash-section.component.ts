@@ -20,14 +20,10 @@ export class FlashSectionComponent implements OnInit {
       console.log(val);
       this.products = val;
     });
-    var swiper = new Swiper('.swiper', {
+    var swiper = new Swiper('.mySwiper', {
       slidesPerView: 4.5,
       spaceBetween: 30,
       freeMode: true,
-      pagination: {
-        el: '.swiper-pagination',
-        clickable: true,
-      },
       navigation: {
         nextEl: '.right',
         prevEl: '.left',
