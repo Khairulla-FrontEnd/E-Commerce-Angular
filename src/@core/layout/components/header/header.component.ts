@@ -3,7 +3,7 @@ import { ButtonModule } from 'primeng/button';
 import { environment } from "../../../../environments/environment";
 import { BadgeModule } from 'primeng/badge';
 import { OverlayBadgeModule } from 'primeng/overlaybadge';
-import { Router } from "@angular/router";
+import { Router, RouterLink } from "@angular/router";
 import { LayoutService } from "../../layout.service";
 import { Skeleton } from 'primeng/skeleton';
 import { CommonModule } from "@angular/common";
@@ -16,7 +16,8 @@ import { CommonModule } from "@angular/common";
         BadgeModule,
         OverlayBadgeModule,
         Skeleton,
-        CommonModule
+        CommonModule,
+        RouterLink
     ],
     templateUrl: './header.component.html',
     styleUrl: './header.component.scss'
