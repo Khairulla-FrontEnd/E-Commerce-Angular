@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Navigation, Pagination } from 'swiper/modules';
 import Swiper from 'swiper';
 import { ApiService } from '../../../../../../shared/service/api.service';
-import { catchError, of } from 'rxjs';
+import { map } from 'rxjs';
 
 @Component({
   selector: 'app-flash-section',
@@ -16,8 +16,27 @@ export class FlashSectionComponent implements OnInit {
   constructor(private apiService: ApiService) {}
   products: any = [];
   ngOnInit(): void {
-    this.apiService.get('products').subscribe((val: any) => {
-      console.log(val);
+    this.apiService.get('products')
+    .pipe(
+      map((val:any) => {
+      const newVal = val.map((item:any,index:number) => {
+            const image = item.images[0];
+              const newImg = image.split("").filter((item:any,index:number) => 
+              item !== "\"" 
+              && item !== "[" 
+              && item !== "]")
+              .join("");
+              item.images = newImg;
+              if(newImg === "https://placeimg.com/640/480/any" || newImg === "www.apple.com"){
+                return;
+              }else{
+                return item;
+              }
+          })
+      return newVal.filter((item:any,index:number) => item !== undefined);
+      })
+    )
+    .subscribe((val: any) => {
       this.products = val;
     });
     var swiper = new Swiper('.mySwiper', {
