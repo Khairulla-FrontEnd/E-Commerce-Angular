@@ -1,0 +1,57 @@
+<footer style="padding-block:80px">
+    <div class="container">
+        <div class="row">
+            <div class="col mb-lg-0 mb-5">
+                <a href="#" class="heading fw-bold fs-4 text-decoration-none">
+                    {{ environment.appThemeName }}
+                </a>
+                <h5 class="title mb-2 mt-3">
+                    Subscribe
+                </h5>
+                <div class="d-flex flex-column">
+                    <p class="title">Get 10% off your first order</p>
+                    <div class="input-group flex-nowrap">
+                        <input 
+                        type="email" 
+                        class="form-control-plaintext
+                        text-white
+                        rounded-start-2 p-2 border-2 border-end-0 border-white"
+                        placeholder="Enter your email"
+                        />
+                        <a href="#" 
+                        role="button" 
+                        class="input-group-text border-2 border-start-0 text-white">
+                            <i 
+                            class="bi bi-send"
+                            ></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            @for (list of lists; track $index) {
+                <div class="col mb-lg-0 mb-5">
+                    <h5 class="title mb-3">{{ list.title }}</h5>
+                    @for (item of list.list; track $index) {
+                        <p 
+                        class="title mb-2 text-undr"
+                        role="button"
+                        >{{ item }}</p>
+                    }
+                </div>
+            }
+            <div class="col mb-lg-0 mb-5">
+                <h5 class="title mb-3">Download App</h5>
+                <div class="d-flex flex-column mb-2">
+                    <small class="text-secondary" style="color:gray !important;">Save $3 with App New User Only</small>
+                    <img ngSrc="./assets/media/footer/footer-img.png" role="button" alt="footer-img" width="198" height="84" priority>
+                </div>
+                <div class="d-flex align-items-center justify-content-between">
+                    @for (icon of icons; track $index) {
+                        <i [class]="'bi bi-' + icon" class="fs-4" role="button"></i>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<div class="bg-black text-center pb-5" style="color:gray;">© Copyright Rimel 2025. All right reserved</div>

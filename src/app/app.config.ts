@@ -14,7 +14,8 @@ export const appConfig: ApplicationConfig = {
         options:{
           darkModeSelector:'dark-mode'
         }
-      }
+      },
+      ripple:true
     }),
     provideHttpClient(withFetch())
   ]

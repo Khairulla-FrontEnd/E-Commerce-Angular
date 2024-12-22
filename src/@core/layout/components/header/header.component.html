@@ -79,7 +79,8 @@
         @if(isLoading){
           <p-skeleton size="42px" shape="circle"></p-skeleton>
         }@else {
-          <img [src]="imgUrl"
+          <img 
+          [src]="imgUrl"
           (click)="showAvatar(-1)"
           role="button"
           id="avatar"
