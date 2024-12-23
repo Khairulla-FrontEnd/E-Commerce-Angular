@@ -22,4 +22,12 @@ export class WishlistComponent {
             icon:'bi-trash'
         }
     );
+    recProducts = new Array(4).fill(
+        {
+            image:'https://th.bing.com/th/id/OIP.GPFEY6kfgxbsja6gmrW6rwHaE7?rs=1&pid=ImgDetMain',
+            title:'Coming soon...',
+            price:0.00,
+            icon:'bi-heart'
+        }
+    )
 }
