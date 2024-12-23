@@ -1,8 +1,8 @@
 <footer style="padding-block:80px">
     <div class="container">
         <div class="row">
-            <div class="col mb-lg-0 mb-5">
-                <a href="#" class="heading fw-bold fs-4 text-decoration-none">
+            <div class="col mb-lg-0 mb-5 me-2">
+                <a href="#" class="heading text-nowrap fw-bold fs-4 text-decoration-none">
                     {{ environment.appThemeName }}
                 </a>
                 <h5 class="title mb-2 mt-3">
@@ -30,7 +30,7 @@
             </div>
             @for (list of lists; track $index) {
                 <div class="col mb-lg-0 mb-5">
-                    <h5 class="title mb-3">{{ list.title }}</h5>
+                    <h5 class="title mb-3 text-nowrap">{{ list.title }}</h5>
                     @for (item of list.list; track $index) {
                         <p 
                         class="title mb-2 text-undr"
