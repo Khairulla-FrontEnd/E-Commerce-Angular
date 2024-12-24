@@ -21,6 +21,14 @@
                 ></app-category-card>
             </a>
          }
+         @if(isLoading()){
+            @for(skeleton of [].constructor(6); track $index) {
+                <div class="d-flex flex-column justify-content-center align-items-center">
+                    <p-skeleton size="170px" styleClass="mb-2"/>
+                    <p-skeleton width="100px"></p-skeleton>
+                </div>
+            }
+         }
     </div>
     </div>
 </section>

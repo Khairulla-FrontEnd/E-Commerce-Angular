@@ -7,6 +7,7 @@ import { CategoriesService } from "./categories.service";
 import { ResourceByIdPipe } from "../../../../../shared/pipes/resource-by-id.pipe";
 import { Resources } from "../../../../../resources";
 import { RouterLink } from "@angular/router";
+import { Skeleton } from "primeng/skeleton";
 
 @Component({
     selector:'app-categories',
@@ -14,7 +15,8 @@ import { RouterLink } from "@angular/router";
         HeadingComponent,
         CategoryCard, 
         ResourceByIdPipe,
-        RouterLink
+        RouterLink,
+        Skeleton
     ],
     standalone:true,
     templateUrl:'./categories.component.html',
