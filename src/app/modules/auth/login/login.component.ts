@@ -6,9 +6,9 @@ import {
   Validators,
   ReactiveFormsModule,
 } from '@angular/forms';
-import { LayoutService } from '../../../@core/layout/layout.service';
+import { LayoutService } from '../../../../@core/layout/layout.service';
 import { Router } from '@angular/router';
-import { ButtonComponent } from "../../shared/components/button/button.component";
+import { ButtonComponent } from "../../../shared/components/button/button.component";
 
 @Component({
   selector: 'app-login',

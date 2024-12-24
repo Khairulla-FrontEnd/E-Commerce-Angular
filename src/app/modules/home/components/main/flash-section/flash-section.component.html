@@ -1,7 +1,12 @@
 <div class="container mt-5">
   <div class="flash-sales mb-4 d-flex justify-content-between">
-    <h2>Today's <span class="highlight">Flash Sales</span></h2>
-    <div class="d-flex gap-2">
+    <div class="d-flex flex-column">
+      <app-heading
+      label="Today's"
+      />
+      <h2><span class="highlight heading">Flash Sales</span></h2>
+    </div>
+    <div class="d-flex align-items-center gap-2">
       <button class="btn btn-light left">
         <i class="pi pi-arrow-left"></i>
       </button>
@@ -13,7 +18,7 @@
 
   <div class="swiper mySwiper">
     <div class="swiper-wrapper">
-      @for (product of products; track $index) {
+      @for (product of data(); track $index) {
       <div class="swiper-slide">
         <app-product-card
         [product]="product"

@@ -1,11 +1,11 @@
 import { Component, inject, OnInit } from "@angular/core";
 import { RouterLink } from "@angular/router";
-import { ApiService } from "../../shared/service/api.service";
+import { ApiService } from "../../../shared/service/api.service";
 import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from "@angular/router";
-import { LayoutService } from "../../../@core/layout/layout.service";
+import { LayoutService } from "../../../../@core/layout/layout.service";
 import { ProgressSpinner } from 'primeng/progressspinner';
-import { ButtonComponent } from "../../shared/components/button/button.component";
+import { ButtonComponent } from "../../../shared/components/button/button.component";
 
 @Component({
     selector:'app-signup',
