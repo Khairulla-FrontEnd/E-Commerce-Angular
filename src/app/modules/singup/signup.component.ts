@@ -5,15 +5,17 @@ import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angula
 import { Router } from "@angular/router";
 import { LayoutService } from "../../../@core/layout/layout.service";
 import { ProgressSpinner } from 'primeng/progressspinner';
+import { ButtonComponent } from "../../shared/components/button/button.component";
 
 @Component({
     selector:'app-signup',
     standalone:true,
-    imports:[
-        RouterLink,
-        ReactiveFormsModule,
-        ProgressSpinner
-    ],
+    imports: [
+    RouterLink,
+    ReactiveFormsModule,
+    ProgressSpinner,
+    ButtonComponent
+],
     templateUrl:'./signup.component.html',
     styleUrl:'./signup.component.scss'
 })

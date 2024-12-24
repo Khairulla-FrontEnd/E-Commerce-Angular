@@ -2,9 +2,7 @@
     <div class="container">
         <div class="d-flex justify-content-between align-items-center mt-5">
             <h5 class="title">Wishlist (4)</h5>
-                <p-button 
-                [style]="{color:'black', border:'2px solid black', background:'white'}"
-                severity="secondary" 
+                <app-secondary-button
                 label="Move All To Bag"
                 />
         </div>
@@ -21,11 +19,9 @@
                 </button>
                 <h5 class="title">Just For You</h5>
             </div>
-            <p-button 
-                [style]="{color:'black', border:'2px solid black', background:'white'}"
-                severity="secondary" 
-                label="See All"
-                />
+            <app-secondary-button
+            label="See All"
+            />
         </div>
         <div class="d-flex flex-wrap align-items-center gap-4 mb-4">
             @for (product of recProducts; track $index) {

@@ -27,7 +27,11 @@
                             [style]="{width:'30px',height:'30px'}"
                             ></p-progress-spinner>
                         }
-                        <button class="btn btn-danger text-white py-2 title" type="submit" [class]="!form.valid ? 'disabled' : ''">Create Account</button>
+                        <app-button
+                        text="Create Account"
+                        type="submit"
+                        [isDisabled]="!form.valid ? true : false"
+                        />
                         <button class="btn btn-info title border rounded-3 border-2 py-2
                         border-black d-flex justify-content-center align-items-center gap-2"><img  width="20" height="20" src="./assets/media/signup/google-icon.png" alt="google-icon"> Sign Up with Google</button>
                         <a routerLink="/login" role="button">Already have an account?</a>
