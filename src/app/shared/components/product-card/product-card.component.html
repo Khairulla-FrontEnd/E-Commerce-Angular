@@ -1,4 +1,4 @@
-<div class="product-card" (click)="log($event, false)">
+<div class="product-card" style="max-width:265px" (click)="log($event, false)">
   <div class="position-relative">
     <div class="product-img">
       <img
@@ -30,7 +30,7 @@
     </p>
   </div>
   <div class="pt-2 px-1">
-    <h5 class="product-title fs-6">{{ product.title }}</h5>
+    <h5 class="product-title fs-6 text-wrap">{{ product.title }}</h5>
     <p-rating class="my-1" [(ngModel)]="value" [readonly]="true" />
     <p class="mb-1">{{ real }} <span>sum/oy</span></p>
     <div>

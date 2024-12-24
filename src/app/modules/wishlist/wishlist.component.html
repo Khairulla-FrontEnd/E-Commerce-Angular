@@ -6,7 +6,7 @@
                 label="Move All To Bag"
                 />
         </div>
-        <div class="d-flex flex-wrap justify-content-between align-items-center gap-4 my-4">
+        <div class="d-flex product-cards flex-wrap justify-content-between align-items-center gap-4 my-4">
             @for (product of products; track $index) {
                     <app-product-card
                     [product]="product"
@@ -22,7 +22,7 @@
             (click)="handleClick()"
             />
         </div>
-        <div class="d-flex flex-wrap justify-content-between align-items-center gap-4 mb-4">
+        <div class="d-flex product-cards flex-wrap justify-content-between align-items-center gap-4 mb-4">
             @for (product of data()?.slice(0,show); track $index) {
                 <app-product-card
                 [product]="product"
