@@ -11,4 +11,8 @@ import { Component, Input } from "@angular/core";
 
 export class CategoryCard{
     @Input({required:true}) category:any;
+
+    handleError(img:HTMLImageElement):void{
+        img.src = "./assets/media/default-image/default-image.jpg";
+    }
 }

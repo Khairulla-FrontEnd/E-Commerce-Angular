@@ -17,9 +17,9 @@
   </div>
   <div class="swiper mySwiper">
     <div class="swiper-wrapper">
-      @for (product of data(); track $index) {
+      @for (product of data()?.slice(0,10); track $index) {
       <div class="swiper-slide">
-        <app-product-card [product]="product" [isLoading]="isLoading()" />
+        <app-product-card [product]="product" />
       </div>
       } 
       @if(isLoading()){ 

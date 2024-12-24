@@ -16,7 +16,9 @@ import { Skeleton } from 'primeng/skeleton';
   styleUrl: './flash-section.component.scss',
 })
 export class FlashSectionComponent extends BaseLoadComponent<any> {
+  service = inject(FlashSectionService);
   isActive: number = -1;
+
   override afterLoadData(data: any): void {
     var swiper = new Swiper('.mySwiper', {
       cssMode: true,
@@ -29,8 +31,34 @@ export class FlashSectionComponent extends BaseLoadComponent<any> {
       },
       modules: [Navigation, Pagination],
     });
+    const newVal = data.map((item: any, index: number) => {
+      const image = item.images[0];
+      const newImg = image.split("")
+        .filter
+        (
+          (item: any, index: number) =>
+            item !== "\""
+            && item !== "["
+            && item !== "]"
+        )
+        .join("");
+      item.images = newImg;
+      item.icon = "bi-heart";
+      if
+        (
+        newImg === "https://placeimg.com/640/480/any"
+        ||
+        newImg === "www.apple.com"
+      ) {
+        return;
+      } else {
+        return item;
+      }
+    })
+    const newData = newVal.filter((item: any, index: number) => item !== undefined); 
+    this.data.set(newData);
   }
-  service = inject(FlashSectionService);
+
   getData(): Observable<any> {
     return this.service.getProducts()
   }

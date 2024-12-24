@@ -1,17 +1,15 @@
 import { Component, input, Input, OnInit } from '@angular/core';
 import { RatingModule } from 'primeng/rating';
-import { FormsModule } from '@angular/forms';
-import { Skeleton } from 'primeng/skeleton';
+import { FormsModule } from '@angular/forms'
 
 @Component({
   selector: 'app-product-card',
   standalone: true,
-  imports: [RatingModule, FormsModule, Skeleton],
+  imports: [RatingModule, FormsModule],
   templateUrl: './product-card.component.html',
   styleUrl: './product-card.component.scss',
 })
 export class ProductCardComponent implements OnInit {
-  @Input() isLoading: boolean = true;
   @Input() product: any;
   btn: HTMLElement | undefined;
   starClick(starbtn: HTMLElement) {
@@ -37,6 +35,7 @@ export class ProductCardComponent implements OnInit {
     this.real = Math.floor((this.product.price * 13000) / 12).toLocaleString();
     this.yigindi = Math.floor(((this.product.price * 13000) / 100) * this.foiz);
   }
-
-  heandleLoad(): void {}
+  handleError(img:HTMLImageElement):void{
+    img.src = "./assets/media/default-image/default-image.jpg";
+  }
 }

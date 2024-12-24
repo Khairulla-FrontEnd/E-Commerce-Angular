@@ -13,7 +13,7 @@
     </div>
     <div class="category-cards d-flex align-items-center flex-wrap justify-content-between">
         <!-- ... -->
-         @for (category of data(); track $index) {
+         @for (category of data()?.slice(0,5); track $index) {
              <app-category-card
              [category]="category"
              ></app-category-card>
