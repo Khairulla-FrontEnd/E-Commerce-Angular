@@ -2,12 +2,20 @@ import { Component, inject } from "@angular/core";
 import { HeadingComponent } from "../../../../../shared/components/heading/heading.component";
 import { CategoryCard } from "./components/category-card/category-card.component";
 import { BaseLoadComponent } from "../../../../../shared/components/classes/base-load.component";
-import { map, Observable } from "rxjs";
+import { Observable } from "rxjs";
 import { CategoriesService } from "./categories.service";
+import { ResourceByIdPipe } from "../../../../../shared/pipes/resource-by-id.pipe";
+import { Resources } from "../../../../../resources";
+import { RouterLink } from "@angular/router";
 
 @Component({
     selector:'app-categories',
-    imports: [HeadingComponent, CategoryCard],
+    imports: [
+        HeadingComponent,
+        CategoryCard, 
+        ResourceByIdPipe,
+        RouterLink
+    ],
     standalone:true,
     templateUrl:'./categories.component.html',
     styleUrl:'./categories.component.scss'
@@ -19,7 +27,8 @@ export class CategoriesComponent extends BaseLoadComponent<any> {
         return this.service.getCategories();
     }
     override afterLoadData(data: any): void {
-        console.log(data);
         this.data.set(data.filter((item:any,index:number) => item.image !== "https://pravatar.cc/" && item.image !== "https://placeimg.com/640/480/any"))
     }
+
+    protected readonly resources = Resources;
 }

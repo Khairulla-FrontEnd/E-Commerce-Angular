@@ -4,6 +4,7 @@ import { authRouting } from "./modules/auth/auth.routing";
 import homeRouting from "./modules/home/home.routing";
 import wishlistRouting from "./modules/wishlist/wishlist.routing";
 import cartRouting from "./modules/cart/cart.routing";
+import categoriesRouting from "./modules/home/components/main/categories/categories.routing";
 
 export const appRouting: Routes = [
     {
@@ -13,7 +14,8 @@ export const appRouting: Routes = [
             ...authRouting,
             ...homeRouting,
             ...wishlistRouting,
-            ...cartRouting
+            ...cartRouting,
+            ...categoriesRouting
         ],
     }
 ];
