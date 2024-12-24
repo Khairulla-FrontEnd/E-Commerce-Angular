@@ -3,18 +3,22 @@ import { RouterLink } from "@angular/router";
 import { TableModule } from 'primeng/table';
 import { RatingModule } from 'primeng/rating';
 import { FormsModule } from "@angular/forms";
-import { ButtonModule } from "primeng/button";
+import { InputComponent } from "../../shared/components/input/input.component";
+import { ButtonComponent } from "../../shared/components/button/button.component";
+import { SecondaryButtonComponent } from "../../shared/components/secondary-button/secondary-button.component";
 
 @Component({
     selector:'app-cart',
     standalone:true,
-    imports:[
-        RouterLink,
-        TableModule,
-        RatingModule,
-        FormsModule,
-        ButtonModule
-    ],
+    imports: [
+    RouterLink,
+    TableModule,
+    RatingModule,
+    FormsModule,
+    InputComponent,
+    ButtonComponent,
+    SecondaryButtonComponent
+],
     templateUrl:'./cart.component.html',
     styleUrl:'./cart.component.scss'
 })

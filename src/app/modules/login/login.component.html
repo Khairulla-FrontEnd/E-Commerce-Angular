@@ -34,13 +34,11 @@
           }
         </div>
         <div class="mt-3 d-flex justify-content-between">
-          <button
-            class="btn btn-danger"
-            [disabled]="!profileForm.valid"
-            type="submit"
-          >
-            Log In
-          </button>
+          <app-button
+          text="Log In"
+          [isDisabled]="!profileForm.valid"
+          type="submit"
+          />
           <button class="btn btn-dark">Forget Password?</button>
         </div>
       </form>

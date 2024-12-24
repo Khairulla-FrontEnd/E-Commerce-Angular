@@ -1,14 +1,14 @@
 import { Component } from "@angular/core";
-import { ButtonModule } from "primeng/button";
 import { ProductCardComponent } from "../../shared/components/product-card/product-card.component";
+import { SecondaryButtonComponent } from "../../shared/components/secondary-button/secondary-button.component";
 
 @Component({
     selector:'app-wishlist',
     standalone:true,
-    imports:[
-        ButtonModule,
-        ProductCardComponent
-    ],
+    imports: [
+    ProductCardComponent,
+    SecondaryButtonComponent
+],
     templateUrl:'./wishlist.component.html',
     styleUrl:'./wishlist.component.scss',
 })

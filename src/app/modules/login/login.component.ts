@@ -8,11 +8,12 @@ import {
 } from '@angular/forms';
 import { LayoutService } from '../../../@core/layout/layout.service';
 import { Router } from '@angular/router';
+import { ButtonComponent } from "../../shared/components/button/button.component";
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule, ReactiveFormsModule],
+  imports: [FormsModule, ReactiveFormsModule, ButtonComponent],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
 })
