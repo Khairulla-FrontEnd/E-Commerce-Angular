@@ -1,0 +1,23 @@
+<section id="categories" class="pb-5">
+    <div class="container pb-5 border-2 border-bottom">
+        <div class="d-flex align-items-center
+        justify-content-between mb-5">
+        <div class="d-flex flex-column">
+            <app-heading
+            label="Categories"
+            ></app-heading>
+            <h2 class="heading">
+                Browse By Category
+            </h2>
+        </div>
+    </div>
+    <div class="category-cards d-flex align-items-center flex-wrap justify-content-between">
+        <!-- ... -->
+         @for (category of data(); track $index) {
+             <app-category-card
+             [category]="category"
+             ></app-category-card>
+         }
+    </div>
+    </div>
+</section>

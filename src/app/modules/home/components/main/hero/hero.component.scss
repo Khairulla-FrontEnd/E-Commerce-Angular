@@ -1,0 +1,30 @@
+@import "../../../../../styles/imports.scss";
+
+.swiper-slide img {
+    display: block;
+    object-fit: cover;
+  }
+  .swiper {
+    background: $text-dark;
+  }
+  .bb{
+    transition: all 0.3s ease;
+    width: 0%;
+  }
+  .shop{
+    cursor: pointer;
+  }
+  .shop:hover{
+    .bb{
+      width: 100%;
+    }
+  }
+  @media (max-width:$xl) {
+    .hero-img{
+      width:200px;
+      height: 160px;
+    }
+  }
+  .list:hover{
+    text-decoration: underline;
+  }

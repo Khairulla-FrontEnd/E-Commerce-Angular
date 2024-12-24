@@ -1,0 +1,34 @@
+<section id="wishlist">
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-center mt-5">
+            <h5 class="title">Wishlist (4)</h5>
+                <app-secondary-button
+                label="Move All To Bag"
+                />
+        </div>
+        <div class="d-flex flex-wrap justify-content-between align-items-center gap-4 my-4">
+            @for (product of products; track $index) {
+                    <app-product-card
+                    [product]="product"
+                    />
+            }    
+        </div>
+        <div class="d-flex justify-content-between align-items-center mb-5">
+            <div class="d-flex align-items-center gap-2">
+                <button class="btn btn-danger pt-5">
+                </button>
+                <h5 class="title">Just For You</h5>
+            </div>
+            <app-secondary-button
+            label="See All"
+            />
+        </div>
+        <div class="d-flex flex-wrap justify-content-between align-items-center gap-4 mb-4">
+            @for (product of recProducts; track $index) {
+                <app-product-card
+                [product]="product"
+                />
+            }
+        </div>
+    </div>
+</section>

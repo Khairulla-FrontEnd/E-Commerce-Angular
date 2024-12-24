@@ -1,0 +1,43 @@
+<div class="wrapper">
+    <div class="container mt-5">
+        <div class="row align-items-center">
+            <div class="col mb-lg-0 mb-4 d-lg-block d-none">
+                <img src="./assets/media/signup/signup-img.png" alt="signup-img"
+                width="605"
+                height="581"
+                >
+            </div>
+            <div class="col forms">
+                <h1 class="heading fs-2">Create an account</h1>
+                <p class="title">Enter your details below</p>
+                <form class="d-flex w-75 flex-column gap-4"
+                [formGroup]="form"
+                (ngSubmit)="onSubmit()"
+                >
+                    <input type="text" formControlName="name" class="form-control-plaintext border-bottom" placeholder="Name">
+                    <input type="email" formControlName="email" class="form-control-plaintext border-bottom" placeholder="Email">
+                    <input type="password" formControlName="password" class="form-control-plaintext border-bottom" placeholder="Password">
+                    @if(showErr){
+                        <p class="text-danger">Please, enter a valid input!</p>
+                    }
+                    <div class="d-flex flex-column justify-content-center gap-4">
+                        @if(isLoading){
+                            <p-progress-spinner ariaLabel="loading"
+                            strokeWidth="8"
+                            [style]="{width:'30px',height:'30px'}"
+                            ></p-progress-spinner>
+                        }
+                        <app-button
+                        text="Create Account"
+                        type="submit"
+                        [isDisabled]="!form.valid ? true : false"
+                        />
+                        <button class="btn btn-info title border rounded-3 border-2 py-2
+                        border-black d-flex justify-content-center align-items-center gap-2"><img  width="20" height="20" src="./assets/media/signup/google-icon.png" alt="google-icon"> Sign Up with Google</button>
+                        <a routerLink="/login" role="button">Already have an account?</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

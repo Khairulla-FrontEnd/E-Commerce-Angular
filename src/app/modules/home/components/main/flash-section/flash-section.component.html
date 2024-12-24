@@ -1,0 +1,46 @@
+<div class="container mt-5">
+  <div class="flash-sales mb-4 d-flex justify-content-between">
+    <div class="d-flex flex-column">
+      <app-heading
+      label="Today's"
+      />
+      <h2><span class="highlight heading">Flash Sales</span></h2>
+    </div>
+    <div class="d-flex align-items-center gap-2">
+      <button class="btn btn-light left">
+        <i class="pi pi-arrow-left"></i>
+      </button>
+      <button class="btn btn-light right">
+        <i class="pi pi-arrow-right"></i>
+      </button>
+    </div>
+  </div>
+  <div class="swiper mySwiper">
+    <div class="swiper-wrapper">
+      @for (product of data(); track $index) {
+      <div class="swiper-slide">
+        <app-product-card [product]="product" [isLoading]="isLoading()" />
+      </div>
+      } 
+      @if(isLoading()){ 
+        @for (item of [].constructor(10); track $index) {
+      <div class="d-flex flex-column gap-2">
+        <div class="me-3">
+          <p-skeleton width="265px" height="250px" />
+        </div>
+        <div>
+          <p-skeleton width="265px" styleClass="mb-2" />
+          <p-skeleton width="10rem" styleClass="mb-2" />
+          <p-skeleton width="10rem" styleClass="mb-2" />
+          <p-skeleton width="10rem" styleClass="mb-2" />
+        </div>
+      </div>
+      } }
+    </div>
+  </div>
+  <div class="text-center mt-4">
+    <button class="btn text-white btn-danger px-5 py-2 my-5">
+      View All Products
+    </button>
+  </div>
+</div>

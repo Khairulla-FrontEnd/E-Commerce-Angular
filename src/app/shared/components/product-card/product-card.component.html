@@ -1,0 +1,48 @@
+<div class="product-card" (click)="log($event, false)">
+  <div class="position-relative">
+    <div class="product-img">
+      @if (isLoading) {
+      <p-skeleton width="10rem" height="4rem" />
+      }
+      <img
+        [src]="product.images ? product.images : product.image"
+        class="product-image rounded-2"
+        width="265"
+        height="250"
+        [alt]="product.title"
+        (load)="heandleLoad()"
+      />
+    </div>
+    @if(product.icon){
+    <button
+      class="btn btn-sm position-absolute top-0 end-0 star m-2"
+      (click)="starClick(starbtn)"
+      #starbtn
+    >
+      <i class="bi" [class]="product.icon"></i>
+    </button>
+    }
+    <button class="btn w-100 btn-success position-absolute bottom-0">
+      Add To Cart
+    </button>
+    <p
+      class="position-absolute top-0 left-0 mt-2 bg-danger px-2 py-1 ms-2 rounded-2 text-white"
+    >
+      {{ -foiz }}%
+    </p>
+  </div>
+  <div class="pt-2 px-1">
+    <h5 class="product-title fs-6">{{ product.title }}</h5>
+    <p-rating class="my-1" [(ngModel)]="value" [readonly]="true" />
+    <p class="mb-1">{{ real }} <span>sum/oy</span></p>
+    <div>
+      <p class="mb-0">
+        <del> {{ product.price * 13000 }}</del>
+      </p>
+      <p class="product-price fs-5 fw-bold">
+        {{ product.price * 13000 - yigindi }}
+        <span class="fs-6 fw-bold">sum</span>
+      </p>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,44 @@
+.star {
+  background: white;
+  border: none;
+  color: #000;
+  border-radius: 50%;
+}
+.active {
+  i {
+    color: red;
+    text-overflow: hidden;
+  }
+}
+
+.product-card {
+  .product-img {
+    overflow: hidden;
+    .product-image {
+      transition: all 0.6s ease;
+    }
+  }
+
+  .btn-success {
+    height: 0;
+    opacity: 0;
+  }
+}
+.product-card:hover {
+  .product-img {
+    border-radius: 8px;
+    .product-image {
+      transform: scale(1.2);
+      border-radius: 8px;
+    }
+  }
+  .btn-success {
+    transition: all 1s ease;
+    height: auto;
+    opacity: 0.7;
+  }
+}
+
+.p-rating .pi-star {
+  color: #f9f100; /* Yashil rang */
+}
