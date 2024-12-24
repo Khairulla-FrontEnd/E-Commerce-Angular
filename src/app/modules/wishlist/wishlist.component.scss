@@ -1,7 +1,7 @@
 @import "../../styles/imports.scss";
 
-@media (max-width:$lg) {
-    .gap4{
-        justify-content: center;
+@media (max-width:$md) {
+    .product-cards{
+        justify-content: center !important;
     }
 }
