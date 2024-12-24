@@ -15,7 +15,7 @@ import { ProductCardComponent } from '../../../../../../shared/components/produc
 export class FlashSectionComponent implements OnInit {
   isActive: number = -1;
   constructor(private apiService: ApiService) {}
-  products: any = new Array(10);
+  products: any = [];
   ngOnInit(): void {
     this.apiService.get('products')
     .pipe(
@@ -39,7 +39,7 @@ export class FlashSectionComponent implements OnInit {
       })
     )
     .subscribe((val: any) => {
-      this.products.fill(...val);
+      this.products = val;
     });
     var swiper = new Swiper('.mySwiper', {
       slidesPerView: 4.5,
