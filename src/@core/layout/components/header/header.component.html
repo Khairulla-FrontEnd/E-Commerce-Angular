@@ -37,9 +37,11 @@
               <a routerLink="/wishlist">
                 <i class="pi pi-heart fs-4"></i>
               </a>
-              <i class="pi pi-shopping-cart fs-4"
-              severity="contrast"
-              pBadge value="2"></i>
+              <a routerLink="/cart">
+                <i class="pi pi-shopping-cart fs-4"
+                severity="contrast"
+                pBadge value="2"></i>
+              </a>
               <div class="position-relative d-lg-block d-none">
                 <img [src]="imgUrl" alt="" class="invisible-img" (load)="setLoad()">
                 @if(isLoading){

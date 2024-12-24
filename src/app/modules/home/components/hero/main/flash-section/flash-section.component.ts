@@ -35,7 +35,7 @@ export class FlashSectionComponent implements OnInit {
                 return item;
               }
           })
-      return newVal.filter((item:any,index:number) => item !== undefined).splice(0,10);
+      return newVal.filter((item:any,index:number) => item !== undefined).splice(0,12);
       })
     )
     .subscribe((val: any) => {

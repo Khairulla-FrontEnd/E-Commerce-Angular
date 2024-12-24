@@ -3,6 +3,7 @@ import { SignupComponent } from "../../app/modules/singup/signup.component";
 import { LoginComponent } from "../../app/modules/login/login.component";
 import { homeRoutes } from "../../app/modules/home/home.routes";
 import { WishlistComponent } from "../../app/modules/wishlist/wishlist.component";
+import { CartComponent } from "../../app/modules/cart/cart.component";
 
 export const layoutRoutes:Routes = [
     {
@@ -22,5 +23,9 @@ export const layoutRoutes:Routes = [
     {
         path:'wishlist',
         component:WishlistComponent,
-    }
+    },
+    {
+        path:'cart',
+        component:CartComponent,
+    },
 ];
