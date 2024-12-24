@@ -1,16 +1,14 @@
 <div class="product-card" (click)="log($event, false)">
   <div class="position-relative">
     <div class="product-img">
-      @if (isLoading) {
-      <p-skeleton width="10rem" height="4rem" />
-      }
       <img
         [src]="product.images ? product.images : product.image"
         class="product-image rounded-2"
         width="265"
         height="250"
+        #img
         [alt]="product.title"
-        (load)="heandleLoad()"
+        (error)="handleError(img)"
       />
     </div>
     @if(product.icon){
