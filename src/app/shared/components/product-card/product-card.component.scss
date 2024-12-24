@@ -1,13 +1,26 @@
 .star {
-    background: white;
-    border: none;
-    color: #000;
-    border-radius: 50%;
+  background: white;
+  border: none;
+  color: #000;
+  border-radius: 50%;
+}
+.active {
+  i {
+    color: red;
+    text-overflow: hidden;
   }
-  .active {
-    i {
-      color: red;
-      text-overflow: hidden;
-    }
+}
+
+.product-card {
+  .btn-success {
+    height: 0;
+    opacity: 0;
   }
-  
+}
+.product-card:hover {
+  .btn-success {
+    transition: all 1s ease;
+    height: auto;
+    opacity: 1;
+  }
+}

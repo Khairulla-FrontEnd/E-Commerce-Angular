@@ -1,4 +1,12 @@
+@import "../../../../../../styles/imports.scss";
+
 .swiper-slide {
   max-width: 270px;
 }
 
+@media (max-width: $xl) {
+  .hero-img {
+    width: 200px;
+    height: 220px;
+  }
+}
