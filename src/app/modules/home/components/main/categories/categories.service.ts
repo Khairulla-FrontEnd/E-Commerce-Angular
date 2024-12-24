@@ -14,6 +14,9 @@ export class CategoriesService{
         return this.apiService.get('categories',params);
     }
     getProductsByCategory(categoryId:number):Observable<any>{
-        return this.apiService.get('categories' + categoryId);
+        return this.apiService.get('categories/' + categoryId + '/products');
+    }
+    getCategoryById(id:number):Observable<any>{
+        return this.apiService.get('categories/' + id);
     }
 }

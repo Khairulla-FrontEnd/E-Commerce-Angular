@@ -1,1 +1,31 @@
-<h1>the id is {{id}}</h1>
+<section id="category">
+    <div class="container my-5">
+        <app-heading2
+        class="my-3"
+        [label]="name"
+        ></app-heading2>
+        <div class="my-4 d-flex justify-content-center
+        flex-wrap align-items-center gap-4">
+        @if(isLoading()){
+            @for (_ of [].constructor(4); track _) {
+                <div class="d-flex flex-column gap-2">
+                    <div class="me-3">
+                      <p-skeleton width="265px" height="250px" />
+                    </div>
+                    <div>
+                      <p-skeleton width="265px" styleClass="mb-2" />
+                      <p-skeleton width="10rem" styleClass="mb-2" />
+                      <p-skeleton width="10rem" styleClass="mb-2" />
+                      <p-skeleton width="10rem" styleClass="mb-2" />
+                    </div>
+                  </div>
+            }
+        }
+            @for (card of data() && data()[1]; track $index) {
+                <app-product-card
+                [product]="card"
+                />
+            }
+        </div>
+    </div>
+</section>
