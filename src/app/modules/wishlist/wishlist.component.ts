@@ -4,13 +4,15 @@ import { SecondaryButtonComponent } from "../../shared/components/secondary-butt
 import { map, Observable } from 'rxjs';
 import { BaseLoadComponent } from "../../shared/components/classes/base-load.component";
 import { WishlistService } from "./wishlist.service";
+import { Heading2Component } from "../../shared/components/heading2/heading2.component";
 
 @Component({
     selector:'app-wishlist',
     standalone:true,
     imports: [
     ProductCardComponent,
-    SecondaryButtonComponent
+    SecondaryButtonComponent,
+    Heading2Component
 ],
     templateUrl:'./wishlist.component.html',
     styleUrl:'./wishlist.component.scss',

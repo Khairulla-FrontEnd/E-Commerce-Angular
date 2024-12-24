@@ -14,11 +14,9 @@
             }    
         </div>
         <div class="d-flex justify-content-between align-items-center mb-5">
-            <div class="d-flex align-items-center gap-2">
-                <button class="btn btn-danger pt-5">
-                </button>
-                <h5 class="title">Just For You</h5>
-            </div>
+            <app-heading2
+            label="Just For You"
+            />
             <app-secondary-button
             [label]="show === 4 ? 'See All' : 'See less'"
             (click)="handleClick()"

@@ -15,3 +15,7 @@ export enum Resources {
     Error = "/error",
     Error404 = `${Error}/404`,
 };
+
+export function getResourceById(resource:Resources | string, id:number | string) {
+    return resource.replace(new RegExp(':.*'),id.toString());
+}
