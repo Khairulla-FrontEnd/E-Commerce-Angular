@@ -1,12 +1,30 @@
 @import "../../../../../../styles/imports.scss";
 
-.swiper-slide {
-  max-width: 270px;
+.swiper {
+  overflow: hidden;
+  .swiper-slide {
+    max-width: 270px;
+  }
 }
 
 @media (max-width: $xl) {
   .hero-img {
     width: 200px;
     height: 220px;
+  }
+}
+
+.Flash {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  div {
+    width: 20px;
+    height: 40px;
+    background: red;
+    border-radius: 4px;
+  }
+  p {
+    color: red;
   }
 }

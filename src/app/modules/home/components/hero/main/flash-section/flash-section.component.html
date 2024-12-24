@@ -1,6 +1,10 @@
 <div class="container mt-5">
-  <div class="flash-sales mb-4 d-flex justify-content-between">
-    <h2>Today's <span class="highlight">Flash Sales</span></h2>
+  <div class="Flash">
+    <div></div>
+    <p class="fw-bold">Today’s</p>
+  </div>
+  <div class="flash-sales mb-4 d-flex justify-content-between mt-4">
+    <h2>Today's <span class="">Flash Sales</span></h2>
     <div class="d-flex gap-2">
       <button class="btn btn-light left">
         <i class="pi pi-arrow-left"></i>
@@ -15,12 +19,26 @@
     <div class="swiper-wrapper">
       @for (product of products; track $index) {
       <div class="swiper-slide">
-        <app-product-card
-        [product]="product"
-        />
+        <app-product-card [product]="product" [isLoading]="isLoading" />
       </div>
-      }
+      } @if(isLoading){ @for (item of [].constructor(10); track $index) {
+      <div class="d-flex flex-column gap-2">
+        <div class="me-3">
+          <p-skeleton width="265px" height="250px" />
+        </div>
+        <div>
+          <p-skeleton width="265px" styleClass="mb-2" />
+          <p-skeleton width="10rem" styleClass="mb-2" />
+          <p-skeleton width="10rem" styleClass="mb-2" />
+          <p-skeleton width="10rem" styleClass="mb-2" />
+        </div>
+      </div>
+      } }
     </div>
   </div>
-  <div class="text-center mt-4"></div>
+  <div class="text-center mt-4">
+    <button class="btn text-white btn-danger px-5 py-2 my-5">
+      View All Products
+    </button>
+  </div>
 </div>
