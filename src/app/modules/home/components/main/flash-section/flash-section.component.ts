@@ -1,28 +1,27 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Navigation, Pagination } from 'swiper/modules';
 import Swiper from 'swiper';
-import { ApiService } from '../../../../../shared/service/api.service';
-import { map, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { ProductCardComponent } from '../../../../../shared/components/product-card/product-card.component';
 import { HeadingComponent } from "../../../../../shared/components/heading/heading.component";
 import { BaseLoadComponent } from '../../../../../shared/components/classes/base-load.component';
 import { FlashSectionService } from './flash-section.service';
+import { Skeleton } from 'primeng/skeleton';
 
 @Component({
   selector: 'app-flash-section',
   standalone: true,
-  imports: [ProductCardComponent, HeadingComponent],
+  imports: [ProductCardComponent, HeadingComponent, Skeleton],
   templateUrl: './flash-section.component.html',
   styleUrl: './flash-section.component.scss',
 })
-export class FlashSectionComponent extends BaseLoadComponent<any> implements OnInit {
+export class FlashSectionComponent extends BaseLoadComponent<any> {
   isActive: number = -1;
-  swiper:any;
-  constructor() {
-    super();
-    this.swiper = new Swiper('.mySwiper', {
-      slidesPerView: 4.5,
-      spaceBetween: 30,
+  override afterLoadData(data: any): void {
+    var swiper = new Swiper('.mySwiper', {
+      cssMode: true,
+      slidesPerView: 1,
+      spaceBetween: 10,
       freeMode: true,
       navigation: {
         nextEl: '.right',
