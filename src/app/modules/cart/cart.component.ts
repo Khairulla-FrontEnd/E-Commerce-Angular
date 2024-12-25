@@ -23,7 +23,8 @@ import { SecondaryButtonComponent } from "../../shared/components/secondary-butt
     styleUrl:'./cart.component.scss'
 })
 
-export class CartComponent {
+export class CartComponent{
+    width:string = '100%';
     products:any = [
         {
           id: '1000',

@@ -1,0 +1,7 @@
+<nav class="navbar fixed-bottom py-2 bg-white text-black shadow-lg">
+    <div class="container">
+      @for (icon of icons; track $index) {
+        <i [class]="'py-1 px-2 fs-4 rounded-circle bi bi-' + icon" role="button"></i>
+      }
+    </div>
+  </nav>
