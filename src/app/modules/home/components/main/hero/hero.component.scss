@@ -4,9 +4,6 @@
     display: block;
     object-fit: cover;
   }
-  .swiper {
-    background: $text-dark;
-  }
   .bb{
     transition: all 0.3s ease;
     width: 0%;
@@ -27,4 +24,8 @@
   }
   .list:hover{
     text-decoration: underline;
+  }
+  .btn-primary{
+    border: none !important;
+    background-color: #23A6F0;
   }
