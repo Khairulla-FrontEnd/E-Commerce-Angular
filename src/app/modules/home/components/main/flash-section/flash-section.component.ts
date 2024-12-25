@@ -3,15 +3,16 @@ import { Navigation, Pagination } from 'swiper/modules';
 import Swiper from 'swiper';
 import { Observable } from 'rxjs';
 import { ProductCardComponent } from '../../../../../shared/components/product-card/product-card.component';
-import { HeadingComponent } from "../../../../../shared/components/heading/heading.component";
+import { HeadingComponent } from '../../../../../shared/components/heading/heading.component';
 import { BaseLoadComponent } from '../../../../../shared/components/classes/base-load.component';
 import { FlashSectionService } from './flash-section.service';
 import { Skeleton } from 'primeng/skeleton';
+import { FlashSwiperComponent } from "./components/flash-swiper/flash-swiper.component";
 
 @Component({
   selector: 'app-flash-section',
   standalone: true,
-  imports: [ProductCardComponent, HeadingComponent, Skeleton],
+  imports: [ProductCardComponent, HeadingComponent, Skeleton, FlashSwiperComponent],
   templateUrl: './flash-section.component.html',
   styleUrl: './flash-section.component.scss',
 })
@@ -31,35 +32,54 @@ export class FlashSectionComponent extends BaseLoadComponent<any> {
       },
       modules: [Navigation, Pagination],
     });
+    
+    
     const newVal = data.map((item: any, index: number) => {
       const image = item.images[0];
-      const newImg = image.split("")
-        .filter
-        (
+      const newImg = image
+        .split('')
+        .filter(
           (item: any, index: number) =>
-            item !== "\""
-            && item !== "["
-            && item !== "]"
+            item !== '"' && item !== '[' && item !== ']'
         )
-        .join("");
+        .join('');
       item.images = newImg;
-      item.icon = "bi-heart";
-      if
-        (
-        newImg === "https://placeimg.com/640/480/any"
-        ||
-        newImg === "www.apple.com"
+      item.icon = 'bi-heart';
+      if (
+        newImg === 'https://placeimg.com/640/480/any' ||
+        newImg === 'www.apple.com'
       ) {
         return;
       } else {
         return item;
       }
-    })
-    const newData = newVal.filter((item: any, index: number) => item !== undefined); 
+    });
+    const newData = newVal.filter(
+      (item: any, index: number) => item !== undefined
+    );
     this.data.set(newData);
   }
 
   getData(): Observable<any> {
-    return this.service.getProducts()
+    return this.service.getProducts();
+  }
+
+  allBtn: boolean = false;
+  AllClickbtn() {
+    this.allBtn = !this.allBtn;
+  }
+  handleLoad() {
+    var swiper2 = new Swiper('.mySwiper3', {
+      cssMode: true,
+      slidesPerView: 1,
+      spaceBetween: 10,
+      freeMode: true,
+      navigation: {
+        nextEl: '.right3',
+        prevEl: '.left3',
+      },
+      modules: [Navigation, Pagination],
+    });
+    
   }
 }

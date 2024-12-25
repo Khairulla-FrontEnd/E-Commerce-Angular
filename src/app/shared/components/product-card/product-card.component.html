@@ -1,4 +1,8 @@
-<div class="product-card" style="max-width:265px" (click)="log($event, false)">
+<div
+  class="product-card"
+  style="max-width: 265px"
+  (click)="log($event, product.id)"
+>
   <div class="position-relative">
     <div class="product-img">
       <img
@@ -13,14 +17,19 @@
     </div>
     @if(product.icon){
     <button
+      id="star"
       class="btn btn-sm position-absolute top-0 end-0 star m-2"
-      (click)="starClick(starbtn)"
+      (click)="starClick(starbtn, product.id)"
       #starbtn
     >
-      <i class="bi" [class]="product.icon"></i>
+      <i class="bi" id="star" [class]="product.icon"></i>
     </button>
     }
-    <button class="btn w-100 btn-success position-absolute bottom-0">
+    <button
+      id="AddCart"
+      class="btn w-100 btn-success position-absolute bottom-0"
+      (click)="service.AddCart(product.id)"
+    >
       Add To Cart
     </button>
     <p
@@ -35,10 +44,10 @@
     <p class="mb-1">{{ real }} <span>sum/oy</span></p>
     <div>
       <p class="mb-0">
-        <del> {{ product.price * 13000 }}</del>
+        <del> {{ OldSum }}</del>
       </p>
       <p class="product-price fs-5 fw-bold">
-        {{ product.price * 13000 - yigindi }}
+        {{ Sum }}
         <span class="fs-6 fw-bold">sum</span>
       </p>
     </div>
