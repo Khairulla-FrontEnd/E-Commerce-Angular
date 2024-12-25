@@ -1,5 +1,5 @@
     <section id="hero">
-    <div class="container">
+    <div class="container-lg">
         <div class="row">
             <div class="d-lg-block d-none col-auto border-end pt-4" style="width:250px">
                 @for (list of lists; track $index) {
@@ -17,13 +17,12 @@
                     }
                 }
             </div>
-                <div class="m-lg-4 m-0 swiper p-lg-0 pt-lg-0 pt-4 p-2 mySwiper2 col text-white">
-                    <div class="swiper-wrapper">
-                        @for (item of [].constructor(5); track $index) {
-                            <div class="swiper-slide ps-4 overflow-hidden">
-                              <div class="row cards" style="position:sticky; left:100px; top:50px">
+                <div class="m-lg-4 m-0 p-0 swiper col mySwiper2 text-white">
+                    <div class="swiper-wrapper w-100 overflow-hidden">
+                            <div class="swiper-slide bg-black ps-5 overflow-hidden">
+                              <div class="row" style="position:sticky; top:50px">
                                   <div class="col">
-                                      <div class="d-flex gap-3">
+                                      <div class="d-flex pt-4 gap-3">
                                           <i class="pi pi-apple fs-1"></i>
                                           <p class="title iphone pt-2 text-nowrap">iPhone 14 Series</p>
                                       </div>
@@ -43,7 +42,35 @@
                                   </div>
                               </div>
                             </div>
-                        }
+                            <div class="swiper-slide overflow-hidden" style="
+                            background-image:url('./assets/media/hero/hero2-img.jpg');
+                            background-position: center;
+                            background-size: cover;
+                            background-repeat:no-repeat;
+                            ">
+                                <div class="center text-center position-sticky" style="top:70px;">
+                                        <h1 class="heading text-nowrap">GROCERIES DELIVERY</h1>
+                                        <p class="title pe-1" style="max-width:530px">We know how large objects will act, but things on a 
+                                            small scale just do not act that way.</p>
+                                            <button class="btn btn-lg btn-primary">Start Now</button>
+                                </div>
+                            </div>
+                            <div class="swiper-slide p-4 overflow-hidden" style="
+                            background-image:url('./assets/media/hero/hero3-img.png');
+                            background-position:center;
+                            background-size:cover;
+                            background-repeat:no-repeat;
+                            ">
+                            <div class="position-sticky">
+                                <h1 class="heading">More than <br>
+                                    just a game. <br>
+                                    It’s a lifestyle.</h1>
+                                    <p class="title pe-2" style="max-width:424px; color:#FEFEFE !important;">
+                                        Whether you’re just starting out, have played your whole life or you're a Tour pro, your swing is like a fingerprint.
+                                    </p>
+                                    <p-button label="Shopping Now"></p-button>
+                            </div>
+                            </div>
                     </div>
                     <div class="swiper-pagination"></div>
                   </div>

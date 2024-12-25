@@ -1,8 +1,9 @@
-import { Component } from "@angular/core";
+import { Component, inject } from "@angular/core";
 import { HeaderComponent } from "./components/header/header.component";
 import { ContentComponent } from "./components/content/content.component";
 import { FooterComponent } from "./components/footer/footer.component";
 import { MobileComponent } from "./components/mobile/mobile.component";
+import { LayoutService } from "./layout.service";
 
 
 @Component({
@@ -14,5 +15,5 @@ import { MobileComponent } from "./components/mobile/mobile.component";
 })
 
 export class LayoutComponent {
-    
+    service = inject(LayoutService);
 }

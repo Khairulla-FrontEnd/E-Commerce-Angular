@@ -2,11 +2,15 @@ import { Component, OnInit } from "@angular/core";
 import { Pagination, Navigation } from 'swiper/modules';
 import Swiper from 'swiper/bundle';
 import { NgOptimizedImage } from "@angular/common";
+import { ButtonModule } from "primeng/button";
 
 @Component({
     selector:'app-hero',
     standalone:true,
-    imports:[NgOptimizedImage],
+    imports:[
+        NgOptimizedImage,
+        ButtonModule
+    ],
     templateUrl:'./hero.component.html',
     styleUrl:'./hero.component.scss',
 })
@@ -14,6 +18,7 @@ import { NgOptimizedImage } from "@angular/common";
 export class HeroComponent implements OnInit{
     ngOnInit(): void {
         var swiper = new Swiper('.mySwiper2',{
+            cssMode:true,
             pagination: {
                 el: ".swiper-pagination",
                 clickable:true

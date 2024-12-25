@@ -13,6 +13,11 @@
     display: grid;
     place-items:center;
 }
+.flex-center{
+  display: flex;
+  justify-content: center;
+  align-self: center;
+}
 .swiper-pagination-bullet{
     background-color: gray !important;
     opacity: 1 !important;

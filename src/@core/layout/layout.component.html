@@ -1,6 +1,8 @@
 <div id="app">
     <app-header />
     <app-content />
-    <app-mobile class="d-lg-none d-block" />
+    @if(service.isShowAccount()){
+        <app-mobile class="d-lg-none d-block" />
+    }
     <app-footer />
 </div>
