@@ -26,7 +26,7 @@
               }
             }
           </ul>
-          <div class="w-25 pe-4">
+          <div class="w-25 pe-4 d-lg-block d-none">
             <form class="d-flex align-items-center rounded-2 px-3 flex-nowrap input-search" role="search">
               <input class="form-control-plaintext title" type="search" placeholder="What are you looking for?" aria-label="Search">
               <i class="pi pi-search" role="button"></i>
@@ -34,11 +34,11 @@
           </div>
           @if(service.isShowAccount()){
             <div class="d-flex align-items-center gap-4 mt-lg-0 mt-4">
-              <a routerLink="/wishlist">
+              <a routerLink="/wishlist" class="d-lg-block d-none">
                 <i class="pi pi-heart fs-4"></i>
               </a>
               <a routerLink="/cart">
-                <i class="pi pi-shopping-cart fs-4"
+                <i class="pi pi-shopping-cart fs-4 d-lg-block d-none"
                 severity="contrast"
                 pBadge value="2"></i>
               </a>

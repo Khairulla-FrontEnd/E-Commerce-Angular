@@ -1,0 +1,14 @@
+@import "../../styles/imports.scss";
+
+@media (max-width:$lg) {
+    .wrapper{
+        justify-content: center !important;
+    }
+}
+@media (max-width:320px){
+    .btns{
+        justify-content: center !important;
+        flex-direction: column !important;
+        gap: 20px;
+    }
+}
