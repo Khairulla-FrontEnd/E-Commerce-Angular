@@ -9,29 +9,45 @@
             @for (link of headerLinks; track $index) {
               @if($index === active){
                 <li class="nav-item">
-                  <a class="nav-link active title"
+                  <a class="nav-link active title text-nowrap"
                   aria-current="page"
                   role="button"
-                  >{{link}}</a>
+                  >{{link}}
+                </a>
                   <div class="border-bottom border-black"></div>
                 </li>
               }@else {
                 <li class="nav-item">
-                  <a class="nav-link title"
+                  <a class="nav-link title text-nowrap"
                   role="button"
                   (click)="setActive($index)"
-                  >{{link}}</a>
+                  >{{link}}
+                </a>
                   <div class="border-bottom border-black inactive"></div>
                 </li>
               }
             }
           </ul>
-          <div class="w-25 pe-4 d-lg-block d-none">
-            <form class="d-flex align-items-center rounded-2 px-3 flex-nowrap input-search" role="search">
-              <input class="form-control-plaintext title" type="search" placeholder="What are you looking for?" aria-label="Search">
-              <i class="pi pi-search" role="button"></i>
+            <form class="d-none d-lg-flex align-items-center rounded-2 flex-nowrap input-search" role="search">
+              <p-autocomplete
+              placeholder="What are you looking for?" 
+              name="country" [(ngModel)]="selectedCountry" 
+              (completeMethod)="filterCountry($event)" 
+              [suggestions]="filteredCountries" 
+              optionLabel="title"
+              >
+                <ng-template let-country #item>
+                  <div class="d-flex align-items-center gap-2">
+                    <img [src]="country.images ? country.images : country.image"
+                    (error)="handleError(img)"
+                    #img style="width: 48px" 
+                    />
+                    <div>{{ country.title }}</div>
+                  </div>
+                </ng-template>
+              </p-autocomplete>
+              <i class="pi pi-search position-relative" style="z-index:0; right:30px;" role="button"></i>
             </form>
-          </div>
           @if(service.isShowAccount()){
             <div class="d-flex align-items-center gap-4 mt-lg-0 mt-4">
               <a routerLink="/wishlist" class="d-lg-block d-none">
@@ -44,7 +60,7 @@
               </a>
               <div class="position-relative d-lg-block d-none">
                 <img [src]="imgUrl" alt="" class="invisible-img" (load)="setLoad()">
-                @if(isLoading){
+                @if(isLoading2){
                   <p-skeleton size="42px" shape="circle"></p-skeleton>
                 }@else {
                   <img [src]="imgUrl"
@@ -78,7 +94,7 @@
   @if(service.isShowAccount()){
     <div class="d-lg-none d-block ms-auto me-2">
       <div class="position-relative d-lg-none d-block">
-        @if(isLoading){
+        @if(isLoading2){
           <p-skeleton size="42px" shape="circle"></p-skeleton>
         }@else {
           <img 

@@ -1,0 +1,9 @@
+.input-group-text{
+    transition:all 0.3s ease;
+    &:hover{
+        background-color: aliceblue;
+    }
+    &:active{
+        background-color:inherit;
+    }
+}

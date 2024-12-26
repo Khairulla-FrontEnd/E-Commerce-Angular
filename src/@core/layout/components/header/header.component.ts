@@ -1,4 +1,4 @@
-import { Component, HostListener, inject, OnInit } from "@angular/core";
+import { Component, HostListener, inject } from "@angular/core";
 import { ButtonModule } from 'primeng/button';
 import { environment } from "../../../../environments/environment";
 import { BadgeModule } from 'primeng/badge';
@@ -7,6 +7,11 @@ import { Router, RouterLink } from "@angular/router";
 import { LayoutService } from "../../layout.service";
 import { Skeleton } from 'primeng/skeleton';
 import { CommonModule } from "@angular/common";
+import { AutoComplete } from 'primeng/autocomplete';
+import { FormsModule } from "@angular/forms";
+import { BaseLoadComponent } from "../../../../app/shared/components/classes/base-load.component";
+import { Observable } from "rxjs";
+import { FlashSectionService } from "../../../../app/modules/home/components/main/flash-section/flash-section.service";
 
 @Component({
     selector: 'app-header',
@@ -17,22 +22,76 @@ import { CommonModule } from "@angular/common";
         OverlayBadgeModule,
         Skeleton,
         CommonModule,
-        RouterLink
+        RouterLink,
+        AutoComplete,
+        FormsModule,
     ],
     templateUrl: './header.component.html',
     styleUrl: './header.component.scss'
 })
 
-export class HeaderComponent implements OnInit{
-    constructor(private router:Router) { }
-    headerLinks:string[] = ['Home','Contact','About','Sign Up'];   
+export class HeaderComponent extends BaseLoadComponent<any>{
+
+    ProductService = inject(FlashSectionService)
+    override router = inject(Router);
+
+    override getData(): Observable<any> {
+        return this.ProductService.getProducts();
+    }
+
+    override afterLoadData(data: any): void {
+
+    const newVal = data.map((item: any, index: number) => {
+      const image = item.images[0];
+      const newImg = image
+        .split('')
+        .filter(
+          (item: any, index: number) =>
+            item !== '"' && item !== '[' && item !== ']'
+        )
+        .join('');
+      item.images = newImg;
+      item.icon = 'bi-heart';
+      if (
+        newImg === 'https://placeimg.com/640/480/any' ||
+        newImg === 'www.apple.com'
+      ) {
+        return;
+      } else {
+        return item;
+      }
+    });
+    const newData = newVal.filter(
+      (item: any, index: number) => item !== undefined
+    );
+    this.data.set(newData);
+  }
+
+    headerLinks:string[] = ['Home','Contact','About','Sign Up']; 
+    filteredCountries:any = [];
+    selectedCountry:any;
     active:number = 0;
     userData:any;
-    isLoading:boolean = true;
+    isLoading2:boolean = true;
     isLoggedIn:any;
     service = inject(LayoutService);
     setLoad():void{
-        this.isLoading = false;
+        this.isLoading2 = false;
+    }
+    handleError(img:HTMLImageElement):void {
+        img.src = './assets/media/default-image/default-image.jpg';
+    }
+    filterCountry(event:any):void{
+        let query = event.query;
+        let filtered = [];
+
+        for (let i = 0; i < (this.data() as any[]).length; i++) {
+            let product = (this.data() as any[])[i];
+            if(product.title.toLowerCase().includes(query)) {
+                filtered.push(product);
+            }
+        }
+        this.filteredCountries = filtered;
     }
     imgUrl:string = '';
     items = [
@@ -61,7 +120,7 @@ export class HeaderComponent implements OnInit{
     setActive(index:number) {
         this.active = index;
     }
-    ngOnInit(): void {
+    override ngOnInit(): void {
         this.userData = localStorage.getItem('userData');
         this.isLoggedIn = localStorage.getItem('isLoggedIn');
         if(this.isLoggedIn === 'true'){
@@ -71,6 +130,7 @@ export class HeaderComponent implements OnInit{
         }else{
             this.service.isShowAccount.set(false);
         }
+        super.ngOnInit();
     }
     @HostListener('window:click',['$event'])
     onClick(event:any):void {
