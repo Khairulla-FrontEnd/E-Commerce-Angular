@@ -13,7 +13,7 @@ import { ProductCardService } from './product-card.service';
 export class ProductCardComponent implements OnInit {
   service = inject(ProductCardService);
 
-  @Input() product: any;
+  @Input({required:true}) product: any;
   btn: HTMLElement | undefined;
   starClick(starbtn: HTMLElement, id: number) {
     this.btn = starbtn;

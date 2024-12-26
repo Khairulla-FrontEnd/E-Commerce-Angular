@@ -1,0 +1,23 @@
+<section id="search">
+    <div class="container">
+        <div class="input-group my-3">
+            <input 
+            type="text" 
+            placeholder="Search for a product" 
+            class="form-control form-control-lg" 
+            aria-describedby="search"
+            [formControl]="value"
+            >
+            <i class="input-group-text fs-4 bi bi-search" id="search" role="button"></i>
+        </div>
+        @if(!value.value) {
+            <app-categories></app-categories>
+        }@else {
+            @for (product of filteredData; track $index) {
+                <app-product-card
+                [product]="product"
+                />
+            }
+        }
+    </div>
+</section>

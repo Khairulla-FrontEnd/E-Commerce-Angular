@@ -12,6 +12,8 @@ export enum Resources {
     Categories = "/categories",
     Category = `${Categories}/:id`,
 
+    Search = "/search",
+
     Error = "/error",
     Error404 = `${Error}/404`,
 };
