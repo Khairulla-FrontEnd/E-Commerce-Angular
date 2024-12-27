@@ -14,7 +14,7 @@
 .product-card {
   transition:all 0.3s ease;
   &:hover{
-    box-shadow: 1px 1px 5px;
+    box-shadow: 0.2px 0.2px 10px;
   }
   .product-img {
     overflow: hidden;
