@@ -1,0 +1,33 @@
+<section id="details">
+    <div class="container">
+        <div class="d-flex gap-1 my-5">
+            <a routerLink="/home" style="color:gray !important">Home /</a>
+            <p>{{ title }}</p>
+        </div>
+        <div class="row mb-5">
+            <div class="col">
+                <div class="d-flex flex-column gap-4">
+                    @for (image of images; track $index) {
+                        <p-image [src]="image" alt="product-img" [preview]="true" class="object-fit-contain rounded-1 product-img">
+                            <ng-template #indicator>
+                                <i class="pi pi-search"></i>
+                            </ng-template>
+                            <ng-template #image>
+                                <img [src]="image" alt="product-img-deeper" class="object-fit-cover rounded-1 product-img">
+                            </ng-template>
+                            <ng-template #preview let-style="style" let-previewCallback="previewCallback">
+                                <img [src]="image" alt="product-img-deeper" class="rounded-1" [style]="style" (click)="previewCallback">
+                            </ng-template>
+                        </p-image>
+                    }
+                </div>
+            </div>
+            <div class="col">
+                <img [src]="image" alt="product-main-img" class="product-main-img rounded-1">
+            </div>
+            <div class="col">
+
+            </div>
+        </div>
+    </div>
+</section>

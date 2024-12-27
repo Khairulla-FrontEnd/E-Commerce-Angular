@@ -12,6 +12,10 @@
 }
 
 .product-card {
+  transition:all 0.3s ease;
+  &:hover{
+    box-shadow: 1px 1px 5px;
+  }
   .product-img {
     overflow: hidden;
     .product-image {
@@ -36,5 +40,11 @@
     transition: all 1s ease;
     height: auto;
     opacity: 0.7;
+    &:hover{
+      opacity: 1;
+    }
+    &:active{
+      opacity: 0.7;
+    }
   }
 }

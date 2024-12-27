@@ -31,10 +31,13 @@
             <form class="d-none d-lg-flex align-items-center rounded-2 flex-nowrap input-search" role="search">
               <p-autocomplete
               placeholder="What are you looking for?" 
-              name="country" [(ngModel)]="selectedCountry" 
+              name="country" 
+              [formControl]="SearchService.value"
               (completeMethod)="filterCountry($event)" 
               [suggestions]="filteredCountries" 
               optionLabel="title"
+              (onSelect)="handleCardClick($event)"
+              (onKeyUp)="handleKey($event)"
               >
                 <ng-template let-country #item>
                   <div class="d-flex align-items-center gap-2">
@@ -46,7 +49,9 @@
                   </div>
                 </ng-template>
               </p-autocomplete>
-              <i class="pi pi-search position-relative" style="z-index:0; right:30px;" role="button"></i>
+              <a routerLink="/search">
+                <i class="pi pi-search position-relative" style="z-index:0; right:30px;" role="button"></i>
+              </a>
             </form>
           @if(service.isShowAccount()){
             <div class="d-flex align-items-center gap-4 mt-lg-0 mt-4">

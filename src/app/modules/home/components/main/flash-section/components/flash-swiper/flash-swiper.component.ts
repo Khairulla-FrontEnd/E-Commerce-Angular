@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { FlashSectionService } from '../../flash-section.service';
 import Swiper from 'swiper';
 import { Navigation, Pagination } from 'swiper/modules';
+import { SearchService } from '../../../../../../search/search.service';
 @Component({
   selector: 'app-flash-swiper',
   standalone: true,
@@ -15,6 +16,7 @@ import { Navigation, Pagination } from 'swiper/modules';
 })
 export class FlashSwiperComponent extends BaseLoadComponent<any> {
   service = inject(FlashSectionService);
+  SearchService = inject(SearchService);
   isActive: number = -1;
 
   @Input({required:true}) startLength:number = 0;
@@ -58,6 +60,7 @@ export class FlashSwiperComponent extends BaseLoadComponent<any> {
       (item: any, index: number) => item !== undefined
     );
     this.data.set(newData);
+    this.SearchService.filterValue(this.data());
   }
 
   getData(): Observable<any> {

@@ -8,10 +8,13 @@ import { LayoutService } from "../../layout.service";
 import { Skeleton } from 'primeng/skeleton';
 import { CommonModule } from "@angular/common";
 import { AutoComplete } from 'primeng/autocomplete';
-import { FormsModule } from "@angular/forms";
 import { BaseLoadComponent } from "../../../../app/shared/components/classes/base-load.component";
 import { Observable } from "rxjs";
 import { FlashSectionService } from "../../../../app/modules/home/components/main/flash-section/flash-section.service";
+import { SearchService } from "../../../../app/modules/search/search.service";
+import { ReactiveFormsModule } from "@angular/forms";
+import { Resources } from "../../../../app/resources";
+import { getResourceById } from "../../../../app/resources";
 
 @Component({
     selector: 'app-header',
@@ -24,7 +27,7 @@ import { FlashSectionService } from "../../../../app/modules/home/components/mai
         CommonModule,
         RouterLink,
         AutoComplete,
-        FormsModule,
+        ReactiveFormsModule,
     ],
     templateUrl: './header.component.html',
     styleUrl: './header.component.scss'
@@ -32,13 +35,31 @@ import { FlashSectionService } from "../../../../app/modules/home/components/mai
 
 export class HeaderComponent extends BaseLoadComponent<any>{
 
-    ProductService = inject(FlashSectionService)
+    ProductService = inject(FlashSectionService);
+    SearchService = inject(SearchService);
+    should:boolean = true;
     override router = inject(Router);
 
     override getData(): Observable<any> {
         return this.ProductService.getProducts();
     }
 
+    handleKey(event:KeyboardEvent):void {
+        if(event.key === "Enter" && this.should) {
+            this.router.navigate(['/search']);
+        }
+    }
+    handleCardClick(item:any):void {
+        // ... SHOULD GO TO CARD'S PAGE
+        const id = item.value.id
+        const url = getResourceById(Resources.Detail,id)
+        this.router.navigate([url]);
+        if(item){
+            this.should = false;
+        }else{
+            this.should = true;
+        }
+    }
     override afterLoadData(data: any): void {
 
     const newVal = data.map((item: any, index: number) => {
@@ -69,7 +90,6 @@ export class HeaderComponent extends BaseLoadComponent<any>{
 
     headerLinks:string[] = ['Home','Contact','About','Sign Up']; 
     filteredCountries:any = [];
-    selectedCountry:any;
     active:number = 0;
     userData:any;
     isLoading2:boolean = true;

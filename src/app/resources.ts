@@ -12,6 +12,9 @@ export enum Resources {
     Categories = "/categories",
     Category = `${Categories}/:id`,
 
+    Details = "/details",
+    Detail = `${Details}/:id`,
+
     Search = "/search",
 
     Error = "/error",

@@ -4,9 +4,6 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class ProductCardService {
-  showCart(id: number): number {
-    return id;
-  }
 
   AddCart(id: number): number {
     return id;

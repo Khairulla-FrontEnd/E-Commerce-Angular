@@ -6,6 +6,7 @@ import wishlistRouting from "./modules/wishlist/wishlist.routing";
 import cartRouting from "./modules/cart/cart.routing";
 import categoriesRouting from "./modules/home/components/main/categories/categories.routing";
 import searchRouting from "./modules/search/search.routing";
+import detailsRouting from "./modules/details/details.routing";
 
 export const appRouting: Routes = [
     {
@@ -17,7 +18,8 @@ export const appRouting: Routes = [
             ...wishlistRouting,
             ...cartRouting,
             ...categoriesRouting,
-            ...searchRouting
+            ...searchRouting,
+            ...detailsRouting
         ],
     }
 ];

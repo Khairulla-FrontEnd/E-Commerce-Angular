@@ -33,8 +33,8 @@
                     <h5 class="title mb-3 text-nowrap">{{ list.title }}</h5>
                     @for (item of list.list; track $index) {
                         <p 
-                        class="title mb-2 text-undr"
-                        role="button"
+                        class="title mb-2"
+                        [class]="list.title !== 'Support' ? 'pointer' : ''"
                         >{{ item }}</p>
                     }
                 </div>
@@ -47,7 +47,9 @@
                 </div>
                 <div class="d-flex align-items-center justify-content-between">
                     @for (icon of icons; track $index) {
-                        <i [class]="'bi bi-' + icon" class="fs-4" role="button"></i>
+                        <a [href]="'https://www.' + icon + '.com'" target="_blank">
+                            <i [class]="'bi bi-' + icon" class="fs-4" role="button"></i>
+                        </a>
                     }
                 </div>
             </div>
