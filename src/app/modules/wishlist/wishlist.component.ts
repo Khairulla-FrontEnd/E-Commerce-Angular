@@ -1,10 +1,10 @@
 import { Component, inject } from "@angular/core";
 import { ProductCardComponent } from "../../shared/components/product-card/product-card.component";
 import { SecondaryButtonComponent } from "../../shared/components/secondary-button/secondary-button.component";
-import { map, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { BaseLoadComponent } from "../../shared/components/classes/base-load.component";
-import { WishlistService } from "./wishlist.service";
 import { Heading2Component } from "../../shared/components/heading2/heading2.component";
+import { FlashSectionService } from "../home/components/main/flash-section/flash-section.service";
 
 @Component({
     selector:'app-wishlist',
@@ -19,30 +19,11 @@ import { Heading2Component } from "../../shared/components/heading2/heading2.com
 })
 
 export class WishlistComponent extends BaseLoadComponent<any>{
-    service = inject(WishlistService);
+    service = inject(FlashSectionService);
     show:number = 4;
 
     getData(): Observable<any> {
-        return this.service.getRecommendedProducts();
-    }
-
-    override afterLoadData(data: any): void {
-        const newVal = data.map((item:any,index:number) => {
-            const image = item.images[0];
-              const newImg = image.split("").filter((item:any,index:number) => 
-              item !== "\"" 
-              && item !== "[" 
-              && item !== "]")
-              .join("");
-              item.images = newImg;
-              item.icon = "bi-heart";
-              if(newImg === "https://placeimg.com/640/480/any" || newImg === "www.apple.com"){
-                return;
-              }else{
-                return item;
-              }
-          })
-      this.data.set(newVal.filter((item:any,index:number) => item !== undefined));
+        return this.service.getProducts();
     }
     products = new Array(4).fill(
         {

@@ -38,29 +38,7 @@ export class DetailsComponent extends BaseLoadComponent<Details> {
     override afterLoadData(data: Details): void {
         this.title = data.title;
         console.log(data);
-        const newArr = data.images.map((item:string,index:number) => {
-            let image = item;
-            const newImg = image
-              .split('')
-              .filter(
-                (item: any, index: number) =>
-                  item !== '"' && item !== '[' && item !== ']'
-              )
-              .join('');
-            image = newImg;
-            if (
-              image === 'https://placeimg.com/640/480/any' ||
-              image === 'www.apple.com'
-            ) {
-              return;
-            }else{
-                return image;
-            }
-        });
-
-        const images = newArr.filter((item:string | undefined,index:number) => item !== undefined);
-
-        this.images = images.slice(0,2);
-        this.image = images.slice(2).join('');
+        this.images = data.images.slice(0,2);
+        this.image = data.images.slice(2).join('');
 };
 }

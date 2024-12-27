@@ -35,31 +35,6 @@ export class FlashSwiperComponent extends BaseLoadComponent<any> {
       },
       modules: [Navigation, Pagination],
     });
-
-    const newVal = data.map((item: any, index: number) => {
-      const image = item.images[0];
-      const newImg = image
-        .split('')
-        .filter(
-          (item: any, index: number) =>
-            item !== '"' && item !== '[' && item !== ']'
-        )
-        .join('');
-      item.images = newImg;
-      item.icon = 'bi-heart';
-      if (
-        newImg === 'https://placeimg.com/640/480/any' ||
-        newImg === 'www.apple.com'
-      ) {
-        return;
-      } else {
-        return item;
-      }
-    });
-    const newData = newVal.filter(
-      (item: any, index: number) => item !== undefined
-    );
-    this.data.set(newData);
     this.SearchService.filterValue(this.data());
   }
 

@@ -1,6 +1,6 @@
 import { Component, inject } from "@angular/core";
 import { CategoriesComponent } from "../home/components/main/categories/categories.component";
-import { FormControl, ReactiveFormsModule, Validators } from "@angular/forms";
+import { ReactiveFormsModule } from "@angular/forms";
 import { BaseLoadComponent } from "../../shared/components/classes/base-load.component";
 import { Observable } from "rxjs";
 import { FlashSectionService } from "../home/components/main/flash-section/flash-section.service";
@@ -25,31 +25,7 @@ export class SearchComponent extends BaseLoadComponent<any>{
     filteredData:any;
 
     override afterLoadData(data: any): void {  
-        const newVal = data.map((item: any, index: number) => {
-          const image = item.images[0];
-          const newImg = image
-            .split('')
-            .filter(
-              (item: any, index: number) =>
-                item !== '"' && item !== '[' && item !== ']'
-            )
-            .join('');
-          item.images = newImg;
-          item.icon = 'bi-heart';
-          if (
-            newImg === 'https://placeimg.com/640/480/any' ||
-            newImg === 'www.apple.com'
-          ) {
-            return;
-          } else {
-            return item;
-          }
-        });
-        const newData = newVal.filter(
-          (item: any, index: number) => item !== undefined
-        );
-        this.data.set(newData);
-        this.SearchService.filterValue(this.data());
+        this.SearchService.filterValue(data);
       }
 
     getData(): Observable<any> {
