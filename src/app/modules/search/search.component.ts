@@ -5,6 +5,7 @@ import { BaseLoadComponent } from "../../shared/components/classes/base-load.com
 import { Observable } from "rxjs";
 import { FlashSectionService } from "../home/components/main/flash-section/flash-section.service";
 import { ProductCardComponent } from "../../shared/components/product-card/product-card.component";
+import { SearchService } from "./search.service";
 
 @Component({
     selector:'app-search',
@@ -20,7 +21,7 @@ import { ProductCardComponent } from "../../shared/components/product-card/produ
 
 export class SearchComponent extends BaseLoadComponent<any>{
     service = inject(FlashSectionService);
-    value = new FormControl('',Validators.required);
+    SearchService = inject(SearchService);
     filteredData:any;
 
     override afterLoadData(data: any): void {  
@@ -48,10 +49,7 @@ export class SearchComponent extends BaseLoadComponent<any>{
           (item: any, index: number) => item !== undefined
         );
         this.data.set(newData);
-
-        this.value.valueChanges.subscribe((val:any) => {
-            this.filteredData = this.data().filter((item:any,index:number) => item.title.toLowerCase().includes(val.toLowerCase()));
-        });
+        this.SearchService.filterValue(this.data());
       }
 
     getData(): Observable<any> {

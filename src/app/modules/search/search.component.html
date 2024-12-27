@@ -1,23 +1,26 @@
 <section id="search">
-    <div class="container">
-        <div class="input-group my-3">
+    <div class="container pt-lg-4 pt-0">
+        <div class="input-group my-3 d-lg-none d-flex">
             <input 
             type="text" 
             placeholder="Search for a product" 
             class="form-control form-control-lg" 
             aria-describedby="search"
-            [formControl]="value"
+            name="formControl"
+            [formControl]="SearchService.value"
             >
             <i class="input-group-text fs-4 bi bi-search" id="search" role="button"></i>
         </div>
-        @if(!value.value) {
+        @if(!SearchService.value.value) {
             <app-categories></app-categories>
         }@else {
-            @for (product of filteredData; track $index) {
-                <app-product-card
-                [product]="product"
-                />
-            }
+            <div class="d-flex align-items-center justify-content-center flex-wrap gap-4">
+                @for (product of SearchService.filteredData; track $index) {
+                    <app-product-card
+                    [product]="product"
+                    />
+                }
+            </div>
         }
     </div>
 </section>

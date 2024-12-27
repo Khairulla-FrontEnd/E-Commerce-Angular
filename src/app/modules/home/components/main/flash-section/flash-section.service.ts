@@ -12,6 +12,5 @@ export class FlashSectionService {
   getProductById(productId: number): Observable<any> {
     return this.apiService.get('/products/' + productId);
   }
-
  
 }

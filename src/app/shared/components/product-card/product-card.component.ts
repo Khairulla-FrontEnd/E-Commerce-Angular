@@ -2,6 +2,8 @@ import { Component, inject, Input, OnInit } from '@angular/core';
 import { RatingModule } from 'primeng/rating';
 import { FormsModule } from '@angular/forms';
 import { ProductCardService } from './product-card.service';
+import { Router } from '@angular/router';
+import { getResourceById, Resources } from '../../../resources';
 
 @Component({
   selector: 'app-product-card',
@@ -12,6 +14,9 @@ import { ProductCardService } from './product-card.service';
 })
 export class ProductCardComponent implements OnInit {
   service = inject(ProductCardService);
+  router = inject(Router);
+
+  protected readonly Resources = Resources;
 
   @Input({required:true}) product: any;
   btn: HTMLElement | undefined;
@@ -29,7 +34,8 @@ export class ProductCardComponent implements OnInit {
   }
   log(event: any, id: number) {
       if (event.target.id !== 'star' && event.target.id !== 'AddCart') {
-      this.service.showCart(id);
+      const url = getResourceById(Resources.Detail,id); 
+      this.router.navigate([url]);
     }
   }
 
