@@ -1,5 +1,5 @@
 <div
-  class="product-card rounded-2"
+  class="product-card rounded-2 title"
   style="max-width: 265px"
   (click)="log($event, product.id)"
   role="button"
@@ -42,7 +42,7 @@
   <div class="pt-2 px-1">
     <h5 class="product-title fs-6 text-wrap" style="height:40px">{{ product.title }}</h5>
     <p-rating class="my-1" [(ngModel)]="value" [readonly]="true" />
-    <p class="mb-1">{{ real }} <span>sum/oy</span></p>
+    <p class="mb-1">{{ real }} <span>sum/month</span></p>
     <div>
       <p class="mb-0">
         <del> {{ OldSum }}</del>

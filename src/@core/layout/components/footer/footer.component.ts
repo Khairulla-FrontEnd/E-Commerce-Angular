@@ -19,7 +19,7 @@ export class FooterComponent {
     lists:any = [
         {
             title:"Support",
-            list:["111 Bijoy sarani, Dhaka,  DH 1515, Bangladesh.","exclusive@gmail.com","+88015-88888-9999"],
+            list:["Urganch, Khorazm region, Uzbekistan.","khairulla2008@outlook.com","+998-97-858-6000"],
         },
         {
             title:"Account",

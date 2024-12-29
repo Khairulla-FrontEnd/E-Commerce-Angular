@@ -36,6 +36,8 @@ export class ProductCardComponent implements OnInit {
       if (event.target.id !== 'star' && event.target.id !== 'AddCart') {
       const url = getResourceById(Resources.Detail,id); 
       this.router.navigate([url]);
+      this.service.sum = this.Sum;
+      this.service.value = this.value;
     }
   }
 

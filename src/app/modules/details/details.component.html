@@ -1,32 +1,90 @@
 <section id="details">
     <div class="container">
-        <div class="d-flex gap-1 my-5">
+        <div class="d-flex gap-1 my-5 title">
             <a routerLink="/home" style="color:gray !important">Home /</a>
             <p>{{ title }}</p>
         </div>
-        <div class="row mb-5">
-            <div class="col">
+        <div class="flex-center gap-5 mb-5">
+            <div class="">
                 <div class="d-flex flex-column gap-4">
                     @for (image of images; track $index) {
-                        <p-image [src]="image" alt="product-img" [preview]="true" class="object-fit-contain rounded-1 product-img">
+                        <p-image [src]="image" alt="product-img" (error)="setDefaultImg(img)" #img [preview]="true" class="object-fit-contain rounded-1 product-img">
                             <ng-template #indicator>
                                 <i class="pi pi-search"></i>
                             </ng-template>
                             <ng-template #image>
-                                <img [src]="image" alt="product-img-deeper" class="object-fit-cover rounded-1 product-img">
+                                <img [src]="image" (error)="setDefaultImg(img)" #img alt="product-img-deeper" class="object-fit-cover rounded-1 product-img">
                             </ng-template>
                             <ng-template #preview let-style="style" let-previewCallback="previewCallback">
-                                <img [src]="image" alt="product-img-deeper" class="rounded-1" [style]="style" (click)="previewCallback">
+                                <img [src]="image" (error)="setDefaultImg(img)" #img alt="product-img-deeper" class="rounded-1" [style]="style" (click)="previewCallback">
                             </ng-template>
                         </p-image>
                     }
                 </div>
             </div>
-            <div class="col">
-                <img [src]="image" alt="product-main-img" class="product-main-img rounded-1">
+            <div class="">
+                <img [src]="image" alt="product-main-img" (error)="setDefaultImg(img)" #img class="product-main-img rounded-1">
             </div>
-            <div class="col">
-
+            <div class="">
+                <h1 class="fs-4 heading">{{ title }}</h1>
+                <div class="d-flex align-items-center gap-1 title">
+                    <p-rating [(ngModel)]="productService.value" [readonly]="true"></p-rating>
+                    <p style="color:gray;position:relative;top:10px"
+                    >({{ randomNumber }} Reviews) | <span style="color:#00FF66;">In Stock</span></p>
+                </div>
+                <h1 class="fs-5 heading">{{productService.sum}} sum</h1>
+                <p class="title border-3 pb-4 border-bottom">
+                    {{ description }}
+                </p>
+                <div class="title d-flex gap-3">
+                    <p class="fs-5 pt-1">Size: </p>
+                    <p-select-button
+                    size="small"
+                    [options]="stateOptions" 
+                    [(ngModel)]="value"
+                    optionValue="label" 
+                    optionValue="value" 
+                    />
+                </div>
+                <div class="d-flex gap-5">
+                    <div class="d-flex pt-2 gap-3">
+                            <button class="btn fs-4 btn-light"
+                            style="width:50px; height:50px;"
+                            (click)="count > 1 && count = count-1"
+                            >&#8722;</button>
+                            <p class="pt-2 fs-4">{{count}}</p>
+                            <button class="btn fs-4 btn-danger text-white"
+                            style="width:50px; height:50px;"
+                            (click)="count = count+1"
+                            >&#43;</button>
+                    </div>
+                    <div class="d-flex align-items-center gap-3">
+                        <button class="btn btn-danger text-white" style="height:50px">
+                            Buy Now
+                        </button>
+                        <div class="btn flex-center btn-light" 
+                        (click)="setProperIcon()"
+                        style="height:50px;width:50px;">
+                            <i [class]="'bi bi-' + iconHeart + ' fs-4'"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="border border-black mt-5 border-2">
+                    <div class="d-flex gap-3 ps-4 pt-4">
+                        <i class="bi bi-truck fs-3 pt-2"></i>
+                        <div>
+                            <h5 class="title">Free Delivery</h5>
+                            <p class="title text-decoration-underline" role="button">Enter your postal code for Delivery Availability</p>
+                        </div>
+                    </div>
+                    <div class="d-flex gap-3 border-top border-2 border-black ps-4 pt-4">
+                        <i class="bi bi-arrow-repeat fs-3 pt-2"></i>
+                        <div>
+                            <h5 class="title">Return Delivery</h5>
+                            <p class="title">Free 30 Days Delivery Returns. <span class="text-decoration-underline" role="button">Details</span></p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
