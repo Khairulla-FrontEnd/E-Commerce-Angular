@@ -114,11 +114,12 @@ export class HeaderComponent extends BaseLoadComponent<any>{
         this.active = index;
     }
     override ngOnInit(): void {
+        const defaultUserImg = './assets/media/default-image/default-user-img.jpg';
         this.userData = localStorage.getItem('userData');
         this.isLoggedIn = localStorage.getItem('isLoggedIn');
         if(this.isLoggedIn === 'true'){
             this.userData = JSON.parse(this.userData);
-            this.imgUrl = this.userData.avatar;
+            this.imgUrl = this.userData.avatar ? this.userData.avatar : defaultUserImg;
             this.service.isShowAccount.set(true);
         }else{
             this.service.isShowAccount.set(false);

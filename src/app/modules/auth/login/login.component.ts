@@ -9,6 +9,7 @@ import {
 import { LayoutService } from '../../../../@core/layout/layout.service';
 import { Router } from '@angular/router';
 import { ButtonComponent } from "../../../shared/components/button/button.component";
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-login',
@@ -19,6 +20,9 @@ import { ButtonComponent } from "../../../shared/components/button/button.compon
 })
 export class LoginComponent implements OnInit {
   showErr:boolean = false;
+
+  protected readonly environment = environment;
+
   constructor(private router: Router) {}
 
   service = inject(LayoutService);
