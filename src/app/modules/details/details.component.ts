@@ -58,6 +58,12 @@ export class DetailsComponent extends BaseLoadComponent<Details> {
 
     override ngOnInit(): void {
         this.route.params.subscribe((val:any) => this.id = +val.id);
+        this.router.events.subscribe(event => {
+            if(event.constructor.name === "NavigationEnd"){
+                this.route.params.subscribe((val:any) => this.id = +val.id);
+                this.reload();
+            }
+        })
         super.ngOnInit();
     }
 
