@@ -1,0 +1,16 @@
+
+export interface User {
+    id:number,
+    email:string,
+    password:string,
+    name:string,
+    role:string,
+    avatar:string,
+    creationAt:string,
+    updatedAt:string,
+};
+
+export interface UserUpdate {
+    email:string,
+    name:string,
+};

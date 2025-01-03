@@ -38,6 +38,7 @@ export abstract class BaseLoadComponent<T> extends BaseComponent implements OnIn
                 this.isLoading.set(false);
             },
             error:(err) => {
+                console.error(err);
                 this.onError(err)
             }
         })
