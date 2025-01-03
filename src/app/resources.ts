@@ -15,6 +15,8 @@ export enum Resources {
     Details = "/details",
     Detail = `${Details}/:id`,
 
+    Profile = "/profile",
+
     Search = "/search",
 
     Error = "/error",

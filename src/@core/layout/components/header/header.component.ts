@@ -3,7 +3,7 @@ import { ButtonModule } from 'primeng/button';
 import { environment } from "../../../../environments/environment";
 import { BadgeModule } from 'primeng/badge';
 import { OverlayBadgeModule } from 'primeng/overlaybadge';
-import { Router, RouterLink } from "@angular/router";
+import { RouterLink } from "@angular/router";
 import { LayoutService } from "../../layout.service";
 import { Skeleton } from 'primeng/skeleton';
 import { CommonModule } from "@angular/common";
@@ -62,6 +62,7 @@ export class HeaderComponent extends BaseLoadComponent<any>{
     }
 
     headerLinks:string[] = ['Home','Contact','About','Sign Up']; 
+    links:string[] = ['/home','/contact','/about','/signup'];
     filteredCountries:any = [];
     active:number = 0;
     userData:any;
@@ -91,18 +92,6 @@ export class HeaderComponent extends BaseLoadComponent<any>{
         {
             label:'Manage My Account',
             icon:'pi pi-user',
-        },
-        {
-            label:'My Order',
-            icon:'pi pi-inbox',
-        },
-        {
-            label:'My Cancellations',
-            icon:'pi pi-times-circle',
-        },
-        {
-            label:'My Reviews',
-            icon:'pi pi-star',
         },
         {
             label:'Logout',
@@ -136,7 +125,10 @@ export class HeaderComponent extends BaseLoadComponent<any>{
         this.isShow = !this.isShow;
         if(i === this.items.length - 1){
             localStorage.removeItem('isLoggedIn');
-            this.router.navigate(['/signup']);
+            this.router.navigateByUrl(Resources.Signup);
+            this.active = 3;
+        }else if(i === 0){
+            this.router.navigateByUrl(Resources.Profile);
         }
     }
     isShowAccount:boolean = false;

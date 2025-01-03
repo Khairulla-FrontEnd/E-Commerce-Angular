@@ -9,18 +9,23 @@ export const BASE_URL = environment.apiUrl;
 
 export class ApiService {
     constructor(public http:HttpClient) { }
-    get(prefix:string, params: any = {}) {
-        return this.http.get(urlJoin(BASE_URL,prefix), {
+    get<T=any>(prefix:string, params: any = {}) {
+        return this.http.get<T>(urlJoin(BASE_URL,prefix), {
             params:params
         })
     }
-    post(prefix:string,body: any = {}, params:any = {}) { 
-        return this.http.post(urlJoin(BASE_URL,prefix),body, {
+    post<T=any>(prefix:string,body: any = {}, params:any = {}) { 
+        return this.http.post<T>(urlJoin(BASE_URL,prefix),body, {
             params:params
         })
     }
-    patch(prefix:string, body:any = {}, params:any = {}){
-        return this.http.patch(urlJoin(BASE_URL,prefix),body, {
+    put<T=any>(prefix:string, body: any = {},params:any = {}) {
+        return this.http.put<T>(urlJoin(BASE_URL,prefix),body,{
+            params:params
+        })
+    }
+    patch<T=any>(prefix:string, body:any = {}, params:any = {}){
+        return this.http.patch<T>(urlJoin(BASE_URL,prefix),body, {
             params:params
         })
     }
