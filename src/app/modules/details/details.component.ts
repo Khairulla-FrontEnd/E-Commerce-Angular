@@ -10,6 +10,8 @@ import { ProductCardService } from "../../shared/components/product-card/product
 import { RatingModule } from "primeng/rating";
 import { FormsModule } from "@angular/forms";
 import { SelectButtonModule } from "primeng/selectbutton";
+import { SkeletonModule } from "primeng/skeleton";
+import { MobileImgComponent } from './components/mobile-img/mobile-img.component';
 
 @Component({
     selector:'app-details',
@@ -19,7 +21,9 @@ import { SelectButtonModule } from "primeng/selectbutton";
         ImageModule,
         RatingModule,
         FormsModule,
-        SelectButtonModule
+        SelectButtonModule,
+        SkeletonModule,
+        MobileImgComponent
     ],
     templateUrl:'./details.component.html',
     styleUrl:'./details.component.scss'
@@ -32,6 +36,7 @@ export class DetailsComponent extends BaseLoadComponent<Details> {
     title:string = '';
     images:string[] = [];
     image:string = '';
+    totalImages:string[] = [];
     description:string = '';
     randomNumber:number = Math.floor(Math.random() * 100) + 25;
     defaultImg:string = './assets/media/default-image/default-image.jpg';
@@ -62,7 +67,7 @@ export class DetailsComponent extends BaseLoadComponent<Details> {
 
     override afterLoadData(data: Details): void {
         this.title = data.title;
-        console.log(data);
+        this.totalImages = data.images;
         this.images = data.images.slice(0,2);
         this.image = data.images.slice(2).join('');
         this.description = data.description;

@@ -8,3 +8,22 @@
     width: 400px;
     height: 400px;
 }
+@media (max-width:$xl) {
+    .product-main-img{
+        width:300px;
+        height:300px;
+    }
+    .product-img{
+        width:140px;
+        height:140px;
+    }
+}
+@media (max-width:$lg) {
+    .detail-container{
+        flex-wrap:wrap;
+        text-align:center;
+    }
+    .xl-center{
+        justify-content: center;
+    }
+}
