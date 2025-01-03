@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class ProductCardService {
-  sum:string = (Math.floor(Math.random() * 500000) + 100000).toLocaleString();
+  sum:string = (Math.floor(Math.random() * 58) + 18).toLocaleString();
   value:number = Math.floor(Math.random() * 5) + 2;
 
   AddCart(id: number): number {

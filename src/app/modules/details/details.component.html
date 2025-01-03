@@ -1,42 +1,87 @@
 <section id="details">
     <div class="container">
         <div class="d-flex gap-1 my-5 title">
-            <a routerLink="/home" style="color:gray !important">Home /</a>
-            <p>{{ title }}</p>
+            <a routerLink="/home" style="color:gray !important; text-wrap:nowrap;">Home /</a>
+            @if(isLoading()){
+                <p-skeleton
+                width="10rem"
+                />
+            }@else {
+                <p>{{ title }}</p>
+            }
         </div>
-        <div class="flex-center gap-5 mb-5">
-            <div class="">
+        <div class="flex-center detail-container gap-5 mb-5">
+            <div class="d-block d-sm-none">
+                @if(!isLoading()){
+                    <app-mobile-img [totalImages]="totalImages" />
+                }@else {
+                    <p-skeleton
+                    size="300px"
+                    />
+                }
+            </div>
+            <div class="d-none d-sm-block">
                 <div class="d-flex flex-column gap-4">
-                    @for (image of images; track $index) {
-                        <p-image [src]="image" alt="product-img" (error)="setDefaultImg(img)" #img [preview]="true" class="object-fit-contain rounded-1 product-img">
-                            <ng-template #indicator>
-                                <i class="pi pi-search"></i>
-                            </ng-template>
-                            <ng-template #image>
-                                <img [src]="image" (error)="setDefaultImg(img)" #img alt="product-img-deeper" class="object-fit-cover rounded-1 product-img">
-                            </ng-template>
-                            <ng-template #preview let-style="style" let-previewCallback="previewCallback">
-                                <img [src]="image" (error)="setDefaultImg(img)" #img alt="product-img-deeper" class="rounded-1" [style]="style" (click)="previewCallback">
-                            </ng-template>
-                        </p-image>
+                    @if(!isLoading()){
+                        @for (image of images; track $index) {
+                            <p-image [src]="image" alt="product-img" (error)="setDefaultImg(img)" #img [preview]="true" class="object-fit-contain rounded-1 product-img">
+                                <ng-template #indicator>
+                                    <i class="pi pi-search"></i>
+                                </ng-template>
+                                <ng-template #image>
+                                    <img [src]="image" (error)="setDefaultImg(img)" #img alt="product-img-deeper" class="object-fit-cover rounded-1 product-img">
+                                </ng-template>
+                                <ng-template #preview let-style="style" let-previewCallback="previewCallback">
+                                    <img [src]="image" (error)="setDefaultImg(img)" #img alt="product-img-deeper" class="rounded-1" [style]="style" (click)="previewCallback">
+                                </ng-template>
+                            </p-image>
+                        }
+                    }@else{
+                        @for (_ of [].constructor(2); track $index) {
+                            <p-skeleton 
+                            size="188px"
+                            />
+                        }
                     }
                 </div>
             </div>
-            <div class="">
-                <img [src]="image" alt="product-main-img" (error)="setDefaultImg(img)" #img class="product-main-img rounded-1">
+            <div class="d-none d-sm-block">
+                @if(!isLoading()){
+                    <img [src]="image" alt="product-main-img" (error)="setDefaultImg(img)" #img class="product-main-img rounded-1">
+                }@else {
+                    @for (_ of [].constructor(1); track $index) {
+                        <p-skeleton
+                        size="400px"
+                        />
+                    }
+                }
             </div>
             <div class="">
-                <h1 class="fs-4 heading">{{ title }}</h1>
-                <div class="d-flex align-items-center gap-1 title">
+                @if(isLoading()){
+                    <p-skeleton />
+                }@else{
+                    <h1 class="fs-4 heading">{{ title }}</h1>
+                }
+                <div class="d-flex xl-center flex-wrap align-items-center gap-1 title">
                     <p-rating [(ngModel)]="productService.value" [readonly]="true"></p-rating>
                     <p style="color:gray;position:relative;top:10px"
                     >({{ randomNumber }} Reviews) | <span style="color:#00FF66;">In Stock</span></p>
                 </div>
-                <h1 class="fs-5 heading">{{productService.sum}} sum</h1>
-                <p class="title border-3 pb-4 border-bottom">
-                    {{ description }}
-                </p>
-                <div class="title d-flex gap-3">
+                <h1 class="fs-5 heading">${{productService.sum}}</h1>
+                @if(isLoading()){
+                    <div class="pb-4 mb-2 border-3 border-bottom">
+                        @for (_ of [].constructor(3); track $index) {
+                            <p-skeleton
+                            styleClass="mb-1"
+                            />
+                        }
+                    </div>
+                }@else {
+                    <p class="title border-3 pb-4 border-bottom">
+                        {{ description }}
+                    </p>
+                }
+                <div class="title d-flex gap-3 xl-center">
                     <p class="fs-5 pt-1">Size: </p>
                     <p-select-button
                     size="small"
@@ -46,7 +91,7 @@
                     optionValue="value" 
                     />
                 </div>
-                <div class="d-flex gap-5">
+                <div class="d-flex flex-wrap gap-5 xl-center">
                     <div class="d-flex pt-2 gap-3">
                             <button class="btn fs-4 btn-light"
                             style="width:50px; height:50px;"
@@ -59,7 +104,7 @@
                             >&#43;</button>
                     </div>
                     <div class="d-flex align-items-center gap-3">
-                        <button class="btn btn-danger text-white" style="height:50px">
+                        <button class="btn btn-danger text-white text-nowrap" style="height:50px">
                             Buy Now
                         </button>
                         <div class="btn flex-center btn-light" 
@@ -69,7 +114,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="border border-black mt-5 border-2">
+                <div class="border border-black mt-5 text-start border-2">
                     <div class="d-flex gap-3 ps-4 pt-4">
                         <i class="bi bi-truck fs-3 pt-2"></i>
                         <div>

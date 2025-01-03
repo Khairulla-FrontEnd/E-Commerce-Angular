@@ -42,14 +42,13 @@
   <div class="pt-2 px-1">
     <h5 class="product-title fs-6 text-wrap" style="height:40px">{{ product.title }}</h5>
     <p-rating class="my-1" [(ngModel)]="value" [readonly]="true" />
-    <p class="mb-1">{{ real }} <span>sum/month</span></p>
+    <p class="mb-1">${{ real }} / month</p>
     <div>
       <p class="mb-0">
-        <del> {{ OldSum }}</del>
+        <del> ${{ OldSum }}</del>
       </p>
       <p class="product-price fs-5 fw-bold">
-        {{ Sum }}
-        <span class="fs-6 fw-bold">sum</span>
+        ${{ Sum }}
       </p>
     </div>
   </div>

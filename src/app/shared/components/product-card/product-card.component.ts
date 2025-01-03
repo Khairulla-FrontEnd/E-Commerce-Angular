@@ -48,13 +48,13 @@ export class ProductCardComponent implements OnInit {
   Sum: any;
   OldSum: any;
   ngOnInit(): void {
-    this.yigindi = Math.round(((this.product.price * 13000) / 100) * this.foiz);
+    this.yigindi = Math.round(((this.product.price) / 100) * this.foiz);
     this.real = Math.round(
-      (this.product.price * 13000 - this.yigindi) / 12
+      (this.product.price - this.yigindi) / 12
     ).toLocaleString();
-    this.OldSum = Math.round(this.product.price * 13000).toLocaleString();
+    this.OldSum = Math.round(this.product.price).toLocaleString();
     this.Sum = Math.round(
-      this.product.price * 13000 - this.yigindi
+      this.product.price - this.yigindi
     ).toLocaleString();
   }
   handleError(img: HTMLImageElement): void {
