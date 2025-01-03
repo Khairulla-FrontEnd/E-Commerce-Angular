@@ -38,7 +38,6 @@ export class HeaderComponent extends BaseLoadComponent<any>{
     ProductService = inject(FlashSectionService);
     SearchService = inject(SearchService);
     should:boolean = true;
-    override router = inject(Router);
 
     override getData(): Observable<any> {
         return this.ProductService.getProducts();
@@ -51,9 +50,10 @@ export class HeaderComponent extends BaseLoadComponent<any>{
     }
     handleCardClick(item:any):void {
         // ... SHOULD GO TO CARD'S PAGE
-        const id = item.value.id
-        const url = getResourceById(Resources.Detail,id)
-        this.router.navigate([url]);
+        const id = item.value.id;
+        const url = getResourceById(Resources.Detail,id);
+        this.router.navigateByUrl(url);
+        
         if(item){
             this.should = false;
         }else{

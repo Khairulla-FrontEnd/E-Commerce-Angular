@@ -1,6 +1,9 @@
 @import "../../../../app/styles/imports.scss";
 
 nav{
+    .pi-search{
+        background: $secondary !important;
+    }
     @media (max-width:$lg){
         .w-25{
             width:100% !important;
