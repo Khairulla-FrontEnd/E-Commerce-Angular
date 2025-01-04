@@ -1,0 +1,20 @@
+@import "../../styles/imports.scss";
+
+#about{
+    margin-bottom:100px;
+}
+
+@media (max-width:$lg) {
+    .img-container{
+        display: flex;
+        justify-content: center;
+    }
+    .col-lg{
+        text-align: center;
+    }
+}
+@media (max-width:$md) {
+    .justify-content-between{
+        justify-content: center !important;
+    }
+}

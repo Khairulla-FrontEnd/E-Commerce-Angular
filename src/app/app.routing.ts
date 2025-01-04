@@ -8,6 +8,10 @@ import categoriesRouting from "./modules/home/components/main/categories/categor
 import searchRouting from "./modules/search/search.routing";
 import detailsRouting from "./modules/details/details.routing";
 import profileRouting from "./modules/profile/profile.routing";
+import contactRouting from "./modules/contact/contact.routing";
+import aboutRouting from "./modules/about/about.routing";
+import errorRouting from "./modules/error/error.routing";
+import { Resources } from "./resources";
 
 export const appRouting: Routes = [
     {
@@ -22,6 +26,13 @@ export const appRouting: Routes = [
             ...searchRouting,
             ...detailsRouting,
             ...profileRouting,
+            ...contactRouting,
+            ...aboutRouting,
+            ...errorRouting,
         ],
+    },
+    {
+        path:'**',
+        redirectTo:Resources.Error,
     }
 ];

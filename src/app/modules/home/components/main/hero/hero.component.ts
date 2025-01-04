@@ -3,19 +3,22 @@ import { Pagination, Navigation } from 'swiper/modules';
 import Swiper from 'swiper/bundle';
 import { NgOptimizedImage } from "@angular/common";
 import { ButtonModule } from "primeng/button";
+import { Router, RouterLink } from "@angular/router";
 
 @Component({
     selector:'app-hero',
     standalone:true,
     imports:[
         NgOptimizedImage,
-        ButtonModule
+        ButtonModule,
+        RouterLink
     ],
     templateUrl:'./hero.component.html',
     styleUrl:'./hero.component.scss',
 })
 
 export class HeroComponent implements OnInit{
+    constructor(private router:Router) { }
     ngOnInit(): void {
         var swiper = new Swiper('.mySwiper2',{
             cssMode:true,
@@ -26,6 +29,9 @@ export class HeroComponent implements OnInit{
             modules:[Pagination, Navigation],
             autoplay:true
         })
+    }
+    reloadPage():void{
+        this.router.navigateByUrl('/search');
     }
     lists:any = [
         {

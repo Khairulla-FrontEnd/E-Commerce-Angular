@@ -56,7 +56,7 @@ export abstract class BaseLoadComponent<T> extends BaseComponent implements OnIn
     onError(err:HttpErrorResponse){
         if(this.redirectError){
             if(err.status === 404){
-                return this.router.navigate([Resources.Error404])
+                return this.router.navigate([Resources.Error])
             }
         }
         return;

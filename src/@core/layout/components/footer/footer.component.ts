@@ -1,13 +1,15 @@
 import { Component } from "@angular/core";
 import { environment } from "../../../../environments/environment";
 import { NgOptimizedImage } from "@angular/common";
+import { RouterLink } from "@angular/router";
 
 
 @Component({
     selector:'app-footer',
     standalone:true,
     imports:[
-        NgOptimizedImage
+        NgOptimizedImage,
+        RouterLink
     ],
     templateUrl:'./footer.component.html',
     styleUrl:'./footer.component.scss'
@@ -16,6 +18,8 @@ import { NgOptimizedImage } from "@angular/common";
 export class FooterComponent {
     protected readonly environment = environment;
 
+    year:number = new Date().getFullYear();
+
     lists:any = [
         {
             title:"Support",
@@ -23,12 +27,10 @@ export class FooterComponent {
         },
         {
             title:"Account",
-            list:["My Account","Login / Register","Card","Wishlist","Shop"],
+            list:["My Account","Login / Register","Cart","Wishlist","Shop"],
+            links:['/profile','/signup','/cart','/wishlist','/search']
         },
-        {
-            title:"Quick Link",
-            list:["Privacy Policy","Terms Of Use","FAQ","Contact"],
-        }
     ];
     icons:string[] = ['facebook','twitter','instagram','linkedin'];
+    // MAKE FOOTER TO FUNCTION
 }

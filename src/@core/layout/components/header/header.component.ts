@@ -64,7 +64,7 @@ export class HeaderComponent extends BaseLoadComponent<any>{
     headerLinks:string[] = ['Home','Contact','About','Sign Up']; 
     links:string[] = ['/home','/contact','/about','/signup'];
     filteredCountries:any = [];
-    active:number = 0;
+    active:string = window.location.pathname;
     userData:any;
     isLoading2:boolean = true;
     isLoggedIn:any;
@@ -99,10 +99,15 @@ export class HeaderComponent extends BaseLoadComponent<any>{
         },
     ];
     isShow:boolean = false;
-    setActive(index:number) {
-        this.active = index;
+    setActive(link:string) {
+        this.active = link;
     }
     override ngOnInit(): void {
+        this.router.events.subscribe(event => {
+            if(event.constructor.name === 'NavigationEnd'){
+                this.active = window.location.pathname;
+            }
+        })
         const defaultUserImg = './assets/media/default-image/default-user-img.jpg';
         this.userData = localStorage.getItem('userData');
         this.isLoggedIn = localStorage.getItem('isLoggedIn');
@@ -126,7 +131,7 @@ export class HeaderComponent extends BaseLoadComponent<any>{
         if(i === this.items.length - 1){
             localStorage.removeItem('isLoggedIn');
             this.router.navigateByUrl(Resources.Signup);
-            this.active = 3;
+            this.active = Resources.Signup;
         }else if(i === 0){
             this.router.navigateByUrl(Resources.Profile);
         }
