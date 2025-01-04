@@ -1,12 +1,20 @@
 <nav class="navbar fixed-bottom py-2 bg-white text-black shadow-lg">
     <div class="container">
       @for (icon of icons; track $index) {
-        <a [routerLink]="link[$index]"
-         [class]="link[$index] === activePath ? 'active' : 'inactive'"
-         (click)="setActive(link[$index])"
-         >
-          <i [class]="'fs-4 rounded-circle bi bi-' + icon" role="button"></i>
-        </a>
+        @if(activePath === link[$index]) {
+          <a [routerLink]="link[$index]"
+          class="active"
+          >
+           <i [class]="'fs-4 rounded-circle bi bi-' + icon" role="button"></i>
+         </a>
+        }@else {
+          <a [routerLink]="link[$index]"
+           class="inactive"
+           (click)="setActive(link[$index])"
+           >
+            <i [class]="'fs-4 rounded-circle bi bi-' + icon" role="button"></i>
+          </a>
+        }
       }
     </div>
   </nav>

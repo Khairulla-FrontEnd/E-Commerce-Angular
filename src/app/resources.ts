@@ -17,10 +17,13 @@ export enum Resources {
 
     Profile = "/profile",
 
+    Contact = "/contact",
+
+    About = "/about",
+
     Search = "/search",
 
-    Error = "/error",
-    Error404 = `${Error}/404`,
+    Error = "/error"
 };
 
 export function getResourceById(resource:Resources | string, id:number | string) {

@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { AfterViewChecked, Component, OnChanges, OnInit, SimpleChanges } from "@angular/core";
 import { RouterLink } from '@angular/router';
 
 @Component({
@@ -12,12 +12,14 @@ import { RouterLink } from '@angular/router';
 })
 
 export class MobileComponent implements OnInit{
-    icons:string[] = ['house','search','gear','heart','cart'];
-    link:string[] = ['/home','/search','/settings','/wishlist','/cart'];
-    activePath:string = '';
+    icons:string[] = ['house','search','heart','cart'];
+    link:string[] = ['/home','/search','/wishlist','/cart'];
+    activePath:string = window.location.pathname;
 
     ngOnInit(): void {
-        this.activePath = window.location.pathname;
+        if(window.location.pathname === '/signup'){
+            this.activePath = '/home';
+        }    
     }
 
     setActive(link:string): void {

@@ -4,8 +4,10 @@
             <div class="d-lg-block d-none col-auto border-end pt-4" style="width:250px">
                 @for (list of lists; track $index) {
                     @if($index < 2){
-                        <select class="form-select border-0 p-0 title mb-3"
+                        <select 
+                        class="form-select border-0 p-0 title mb-3"
                         role="button"
+                        (change)="reloadPage()"
                         >
                             <option selected>{{list.placeholder}}</option>
                             @for (item of list.options; track $index) {
@@ -13,7 +15,11 @@
                             }
                         </select>
                     }@else {
-                        <p class="title list" role="button">{{list}}</p>
+                        <a routerLink="/search">
+                            <p class="title list d-block">
+                                {{list}}
+                            </p>
+                        </a>
                     }
                 }
             </div>
@@ -31,10 +37,10 @@
                                       </h1>
                                       <div class="d-flex shop align-items-center gap-2">
                                           <div>
-                                              <p class="title fs-4 text-nowrap">Show Now</p>
+                                              <a routerLink="/search" class="title fs-4 text-nowrap">Show Now</a>
                                               <div class="bg-white bb" style="height:2px"></div>
                                           </div>
-                                          <i class="pi pi-arrow-right pb-3"></i>
+                                          <i class="pi pi-arrow-right pb-3" style="position:relative; top:7px;"></i>
                                       </div>
                                   </div>
                                   <div class="col">
@@ -52,7 +58,7 @@
                                         <h1 class="heading text-nowrap">GROCERIES DELIVERY</h1>
                                         <p class="title pe-1" style="max-width:530px">We know how large objects will act, but things on a 
                                             small scale just do not act that way.</p>
-                                            <button class="btn btn-lg btn-primary">Start Now</button>
+                                            <a routerLink="/search" class="btn btn-lg btn-primary">Start Now</a>
                                 </div>
                             </div>
                             <div class="swiper-slide p-4 overflow-hidden" style="
@@ -68,7 +74,7 @@
                                     <p class="title pe-2" style="max-width:424px; color:#FEFEFE !important;">
                                         Whether you’re just starting out, have played your whole life or you're a Tour pro, your swing is like a fingerprint.
                                     </p>
-                                    <p-button label="Shopping Now"></p-button>
+                                    <p-button routerLink="/search" label="Shopping Now"></p-button>
                             </div>
                             </div>
                     </div>

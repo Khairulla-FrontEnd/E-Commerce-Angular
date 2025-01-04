@@ -1,0 +1,37 @@
+<section id="about">
+    <div class="container">
+        <div class="d-flex gap-1 my-5 title">
+            <a routerLink="/home" style="color:gray !important; text-wrap:nowrap;">Home /</a>
+            <p>About</p>
+        </div>
+        <main>
+            <div class="row align-items-center mb-5">
+                <div class="col-lg">
+                    <h1 class="heading mb-3">Our Story</h1>
+                    <p class="title mb-3">
+                        Launced in 2024, {{environment.appThemeName}} is Central Asia’s premier online shopping makterplace with an active
+                        presense in Uzbekistan. Supported by wide range of tailored marketing, data and service
+                        solutions, {{environment.appThemeName}} has 10,500 sallers and 300 brands and serves 3 millioons customers across
+                        the region.
+                    </p>
+                    <p class="title">
+                        {{environment.appThemeName}} has more than 1 Million products to offer, growing at a very fast. {{environment.appThemeName}} offers a
+                        diverse assotment in categories ranging from consumer.
+                    </p>
+                </div>
+                <div class="col-lg img-container">
+                    <img src="./assets/media/about/shopping.jpg" alt="about-img" class="img-fluid object-fit-cover rounded-1">
+                </div>
+            </div>
+            <div class="d-flex flex-wrap gap-5 justify-content-between align-items-center pt-5">
+                @for (card of cards; track $index) {
+                    <div [class]="'text-center border border-2 rounded-1 flex-center flex-column ' + (card.title === '33k' ? 'bg-danger text-white' : '')" style="width:270px;height:230px;">
+                        <img [src]="card.imgSrc" [alt]="card.title" width="80" height="80" class="mb-3 flex-center object-fit-cover rounded-circle">
+                        <h1 class="fs-3 heading">{{ card.title }}</h1>
+                        <p class="title">{{ card.text }}</p>
+                    </div>
+                }
+            </div>
+        </main>
+    </div>
+</section>
