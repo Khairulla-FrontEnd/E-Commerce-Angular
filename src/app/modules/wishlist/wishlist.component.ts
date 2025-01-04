@@ -25,7 +25,7 @@ export class WishlistComponent extends BaseLoadComponent<any>{
     show:number = 4;
     arrId:number[] = this.productService.arrWishlist;
     getData(): Observable<any> {
-        const $productData = this.service.getProductById(this.arrId[0]);
+        const $productData = this.arrId.map((item:number,index:number) => this.service.getProductById(item));
         const $recommendData = this.service.getProducts();
         return forkJoin([$productData,$recommendData]);
     }

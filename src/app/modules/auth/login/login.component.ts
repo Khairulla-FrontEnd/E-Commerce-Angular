@@ -10,6 +10,7 @@ import { LayoutService } from '../../../../@core/layout/layout.service';
 import { Router } from '@angular/router';
 import { ButtonComponent } from "../../../shared/components/button/button.component";
 import { environment } from '../../../../environments/environment';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-login',
@@ -26,6 +27,7 @@ export class LoginComponent implements OnInit {
   constructor(private router: Router) {}
 
   service = inject(LayoutService);
+  authService = inject(AuthService);
   profileForm = new FormGroup({
     nameLogin: new FormControl('', Validators.required),
     passLogin: new FormControl('', Validators.required),
@@ -56,6 +58,9 @@ export class LoginComponent implements OnInit {
     }
     if(this.isLoggedIn === 'true') {
       this.router.navigate(['/home']);
+      this.authService.isLoggedIn = true;
+    }else{
+      this.authService.isLoggedIn = false;
     }
   }
 }

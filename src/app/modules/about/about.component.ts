@@ -14,6 +14,7 @@ import { environment } from "../../../environments/environment";
 
 export class AboutComponent {
     protected readonly environment = environment;
+    isLoggedIn:string | null = localStorage.getItem('isLoggedIn');
 
     cards:any = [
         {

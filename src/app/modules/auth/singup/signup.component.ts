@@ -6,6 +6,7 @@ import { Router } from "@angular/router";
 import { LayoutService } from "../../../../@core/layout/layout.service";
 import { ProgressSpinner } from 'primeng/progressspinner';
 import { ButtonComponent } from "../../../shared/components/button/button.component";
+import { AuthService } from "../auth.service";
 
 @Component({
     selector:'app-signup',
@@ -26,6 +27,7 @@ export class SignupComponent implements OnInit{
     showErr:boolean = false;
     isLoggedIn:any;
     isLoading:boolean = false;
+    authService = inject(AuthService);
     service = inject(LayoutService);
     form:FormGroup = new FormGroup({
         "name": new FormControl('',Validators.required),
@@ -38,8 +40,10 @@ export class SignupComponent implements OnInit{
         this.isLoggedIn = localStorage.getItem('isLoggedIn');
         if(this.isLoggedIn === 'true'){
             this.router.navigate(['/home']);
+            this.authService.isLoggedIn = true;
         }else{
             this.service.isShowAccount.set(false);
+            this.authService.isLoggedIn = false;
         }
     }
     onSubmit() { 
