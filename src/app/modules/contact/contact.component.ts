@@ -1,7 +1,6 @@
 import { Component } from "@angular/core";
 import { RouterLink } from "@angular/router";
 
-
 @Component({
     selector:"app-contact",
     standalone:true,
@@ -10,6 +9,6 @@ import { RouterLink } from "@angular/router";
     styleUrl:"./contact.component.scss"
 })
 
-export class ContactComponent {
-    
+export class ContactComponent{
+    isLoggedIn:string | null = localStorage.getItem('isLoggedIn');
 }
