@@ -1,7 +1,7 @@
 <section id="wishlist">
     <div class="container">
         <div class="d-flex justify-content-between align-items-center mt-5">
-            <h5 class="title">Wishlist (4)</h5>
+            <h5 class="title">Wishlist ({{ products.length }})</h5>
                 <app-secondary-button
                 label="Move All To Bag"
                 />
@@ -12,6 +12,23 @@
                     [product]="product"
                     />
             }    
+            @if(isLoading()){
+                @for (item of [].constructor(4); track $index) {
+                    <div class="d-flex flex-column gap-2">
+                      <div class="me-3">
+                        <p-skeleton width="265px" height="250px" />
+                      </div>
+                      <div>
+                        <p-skeleton width="265px" styleClass="mb-2" />
+                        <p-skeleton width="10rem" styleClass="mb-2" />
+                        <p-skeleton width="10rem" styleClass="mb-2" />
+                        <p-skeleton width="10rem" styleClass="mb-2" />
+                      </div>
+                    </div>
+                    }
+            }@else if(!products.length){
+                <h1 class="heading fs-2 text-center w-100 my-5">Empty Wishlist! <i class="bi bi-search-heart"></i> <br><span class="fs-6 title">There's no product you've added here!</span></h1>
+            }
         </div>
         <div class="d-flex justify-content-between align-items-center mb-5">
             <app-heading2
@@ -23,10 +40,25 @@
             />
         </div>
         <div class="d-flex product-cards flex-wrap justify-content-between align-items-center gap-4 mb-4">
-            @for (product of data()?.slice(0,show); track $index) {
+            @for (product of justforyou?.slice(0,show); track $index) {
                 <app-product-card
                 [product]="product"
                 />
+            }
+            @if(isLoading()){
+                @for (item of [].constructor(show); track $index) {
+                    <div class="d-flex flex-column gap-2">
+                        <div class="me-3">
+                          <p-skeleton width="265px" height="250px" />
+                        </div>
+                        <div>
+                          <p-skeleton width="265px" styleClass="mb-2" />
+                          <p-skeleton width="10rem" styleClass="mb-2" />
+                          <p-skeleton width="10rem" styleClass="mb-2" />
+                          <p-skeleton width="10rem" styleClass="mb-2" />
+                        </div>
+                      </div>
+                }
             }
         </div>
     </div>
