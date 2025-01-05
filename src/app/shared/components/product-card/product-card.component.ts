@@ -28,6 +28,7 @@ export class ProductCardComponent implements OnInit {
       this.service.AddWishlist(id);
     } else {
       starbtn.querySelector('i')?.classList.add('bi-heart');
+      starbtn.querySelector('i')?.classList.add('text-black');
       this.service.RemoveWishlist(id);
     }
     starbtn.querySelector('i')?.classList.toggle('bi-heart-fill');
@@ -41,6 +42,7 @@ export class ProductCardComponent implements OnInit {
     }
   }
 
+  arrId:number[] = [];
   value: number = Math.floor(Math.random() * 5) + 2;
   foiz: number = Math.floor(Math.random() * 40) + 10;
   real: any;
@@ -48,6 +50,11 @@ export class ProductCardComponent implements OnInit {
   Sum: any;
   OldSum: any;
   ngOnInit(): void {
+    const arrId = localStorage.getItem('wishlist');
+    if(arrId) {
+      this.arrId = JSON.parse(arrId);
+      if(this.arrId.includes(this.product.id)) this.product.icon = 'bi-heart-fill text-danger';
+    }
     this.yigindi = Math.round(((this.product.price) / 100) * this.foiz);
     this.real = Math.round(
       (this.product.price - this.yigindi) / 12

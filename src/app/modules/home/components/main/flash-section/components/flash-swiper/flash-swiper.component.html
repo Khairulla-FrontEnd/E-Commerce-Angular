@@ -18,7 +18,8 @@
       <div class="swiper-slide">
         <app-product-card [product]="product" role="button" />
       </div>
-      } @if(isLoading()){ @for (item of [].constructor(10); track $index) {
+      } @if(isLoading()){ 
+        @for (item of [].constructor(10); track $index) {
       <div class="d-flex flex-column gap-2">
         <div class="me-3">
           <p-skeleton width="265px" height="250px" />

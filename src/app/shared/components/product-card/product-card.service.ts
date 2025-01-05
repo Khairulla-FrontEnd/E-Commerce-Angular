@@ -31,6 +31,8 @@ export class ProductCardService {
   }
 
   RemoveWishlist(id: number): number {
+    this.arrWishlist = this.arrWishlist.filter((item:number,index:number) => item !== id);
+    localStorage.setItem('wishlist',JSON.stringify(this.arrWishlist));
     return id;
   }
 }
