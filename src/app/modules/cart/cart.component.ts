@@ -37,7 +37,6 @@ export class CartComponent extends BaseLoadComponent<any> {
   productService = inject(ProductCardService);
 
   arrId: number[] = this.productService.arrCart;
-  skeletons:number[] = new Array(2).fill(0);
 
   width: string = '100%';
   products: any[] = [];
