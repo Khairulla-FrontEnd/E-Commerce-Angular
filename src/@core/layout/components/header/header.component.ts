@@ -15,6 +15,7 @@ import { SearchService } from "../../../../app/modules/search/search.service";
 import { ReactiveFormsModule } from "@angular/forms";
 import { Resources } from "../../../../app/resources";
 import { getResourceById } from "../../../../app/resources";
+import { ProductCardService } from "../../../../app/shared/components/product-card/product-card.service";
 
 @Component({
     selector: 'app-header',
@@ -37,6 +38,8 @@ export class HeaderComponent extends BaseLoadComponent<any>{
 
     ProductService = inject(FlashSectionService);
     SearchService = inject(SearchService);
+    ProductCardService = inject(ProductCardService);
+    totalProducts:number = this.ProductCardService.totalProducts.length;
     should:boolean = true;
 
     override getData(): Observable<any> {
