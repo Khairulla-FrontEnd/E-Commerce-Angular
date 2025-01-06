@@ -3,45 +3,45 @@
         <p class="title my-5">
             <a style="color:gray !important;" routerLink="/home">Home /</a> Cart
         </p>
-        <p-table [value]="products" [tableStyle]="{'max-width':width}">
-            <ng-template #header>
-                <tr>
-                    <th class="d-lg-block d-none">Product</th>
-                    <th>Price</th>
-                    <th>Quantity</th>
-                    <th>Subtotal</th>
-                </tr>
-            </ng-template>
-            <ng-template #body let-product>
-                <tr>
-                    <td class="d-lg-flex d-none justify-content-end align-items-center gap-2 flex-row-reverse">
-                        <p class="title">{{product.name}}</p>
-                        <img 
-                        [src]="'https://primefaces.org/cdn/primeng/images/demo/product/' + product.image"
-                        [alt]="product.name"
-                        width="50"
-                        height="50"
-                        class="rounded-1">
-                    </td>
-                    <td>
-                        {{product.price}}
-                    </td>
-                    <td>
-                        {{product.quantity}}
-                    </td>
-                    <td>
-                        ${{product.price}}
-                    </td>
-                </tr>
-            </ng-template>
-        </p-table>
+        @if(isLoading()) {
+            <div class="center">
+                <p-progress-spinner aria-label="loading" />
+            </div>
+        }@else {
+            <p-table [value]="products" [tableStyle]="{'max-width':width}">
+                <ng-template #header>
+                    <tr>
+                        <th class="d-lg-block d-none">Product</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Subtotal</th>
+                    </tr>
+                </ng-template>
+                <ng-template #body let-product>
+                    <tr>
+                        <td class="d-lg-flex d-none justify-content-end align-items-center gap-2 flex-row-reverse">
+                            <p class="title" style="max-width:200px;">{{product.title}}</p>
+                            <img [src]="product.image ? product.image : product.images" [alt]="product.name" width="50"
+                                height="50" class="rounded-1">
+                        </td>
+                        <td>
+                            {{product.price}}
+                        </td>
+                        <td>
+                            <input type="number" [value]="product.quantity" [(ngModel)]="product.quantity"
+                                (ngModelChange)="onChange(product.id,$event)" style="width:40px">
+                        </td>
+                        <td>
+                            ${{product.total}}
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        }
         <div class="d-flex text-nowrap flex-wrap justify-content-between align-items-center my-3 py-3 btns">
-            <app-secondary-button
-            label="Return To Shop"
-            ></app-secondary-button>
-            <app-secondary-button
-            label="Update Cart">
-        </app-secondary-button>
+            <app-secondary-button label="Return To Shop"></app-secondary-button>
+            <app-secondary-button label="Update Cart">
+            </app-secondary-button>
         </div>
         <div class="d-flex mb-5 pb-5 flex-wrap justify-content-between align-items-center wrapper">
             <div class="d-flex flex-wrap justify-content-center align-items-center gap-3">
@@ -65,9 +65,7 @@
                     </div>
                 </div>
                 <div class="d-flex justify-content-center align-items-center">
-                    <app-button
-                    text="Proccess to checkout"
-                    ></app-button>
+                    <app-button text="Proccess to checkout"></app-button>
                 </div>
             </div>
         </div>

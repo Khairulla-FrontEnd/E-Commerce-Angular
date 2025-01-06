@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal, WritableSignal } from '@angular/core';
 
 @Injectable({
   providedIn: 'root',
@@ -7,8 +7,35 @@ export class ProductCardService {
   sum:string = (Math.floor(Math.random() * 58) + 18).toLocaleString();
   value:number = Math.floor(Math.random() * 5) + 2;
   arrWishlist:number[] = this.giveWishlistData() ? this.giveWishlistData() : [];
+  arrCart:number[] = this.giveCartData() ? this.giveCartData() : [];
+  totalProducts:WritableSignal<number[]> = signal([]);
+
+  giveCartData():number[] {
+    const arrCart = localStorage.getItem('cart');
+    const cartId:number[] = [];
+    if(arrCart){
+      const parsedData:number[] = JSON.parse(arrCart);
+      cartId.push(...parsedData);
+    }
+    return cartId;
+  }
 
   AddCart(id: number): number {
+    this.arrCart.push(id);
+    localStorage.setItem('cart',JSON.stringify(this.arrCart));
+    return id;
+  }
+
+  onCartChange(id:number,quantity:number):number {
+    const productId:number[] = this.arrCart.filter((item:number) => item === id);
+    const otherProducts:number[] = this.arrCart.filter((item:number) => item !== id);
+    if(quantity > productId.length){
+      productId.push(id);
+    }else if(quantity < productId.length){
+      productId.pop();
+    }
+    this.arrCart = productId.concat(otherProducts);
+    localStorage.setItem('cart',JSON.stringify(this.arrCart));
     return id;
   }
 

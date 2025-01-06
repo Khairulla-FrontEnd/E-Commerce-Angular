@@ -93,7 +93,7 @@
               <a routerLink="/cart">
                 <i class="pi pi-shopping-cart fs-4 d-lg-block d-none"
                 severity="contrast"
-                pBadge value="2"></i>
+                pBadge [value]="totalProducts"></i>
               </a>
               <div class="position-relative d-lg-block d-none">
                 <img [src]="imgUrl" alt="" class="invisible-img" (load)="setLoad()">
