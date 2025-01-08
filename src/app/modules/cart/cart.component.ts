@@ -92,7 +92,7 @@ export class CartComponent extends BaseLoadComponent<any> {
         sum += item.sum * item.quantity;
       });
       this.total = sum;
-      this.productService.onCartChange(id,value,this.products);
+      this.productService.onCartChange(id,value);
     }
   }
 

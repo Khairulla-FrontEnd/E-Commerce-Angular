@@ -56,7 +56,16 @@ export class DetailsComponent extends BaseLoadComponent<Details> {
         return this.service.getProductById(this.id);
     }
 
+    buy():void{
+        this.productService.AddCart(this.id);
+        this.router.navigateByUrl('/cart');
+    }
+
     override ngOnInit(): void {
+        const storage = localStorage.getItem('count');
+        if(storage){
+            this.count = +storage;
+        }
         this.route.params.subscribe((val:any) => this.id = +val.id);
         this.router.events.subscribe(event => {
             if(event.constructor.name === "NavigationEnd"){
@@ -64,10 +73,26 @@ export class DetailsComponent extends BaseLoadComponent<Details> {
                 this.reload();
             }
         })
+        if(this.productService.arrWishlist.includes(this.id)){
+            this.iconHeart = 'heart-fill text-danger';
+        }
         super.ngOnInit();
     }
 
+    increment():void {
+        this.count += 1;
+        this.productService.onCartChange(this.id,this.count);
+        localStorage.setItem('count',String(this.count));
+    }
+
+    decrement():void {
+        this.count > 1 ? this.count -= 1 : this.count = 0;
+        this.productService.onCartChange(this.id,this.count);
+        localStorage.setItem('count',String(this.count));
+    }
+
     setProperIcon():void{
+        this.iconHeart === 'heart' ? this.productService.AddWishlist(this.id) : this.productService.RemoveWishlist(this.id);
         this.iconHeart = this.iconHeart === 'heart' ? this.iconHeart = 'heart-fill text-danger' : this.iconHeart = 'heart';
     }
 
@@ -83,7 +108,7 @@ export class DetailsComponent extends BaseLoadComponent<Details> {
         if(!this.image){
             this.image = this.defaultImg;
         }
-    };
+    }
 
     setDefaultImg(img:HTMLImageElement | Image):void{
         img.src = this.defaultImg;
