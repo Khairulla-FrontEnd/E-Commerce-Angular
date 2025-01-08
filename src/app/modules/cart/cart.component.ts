@@ -12,6 +12,9 @@ import { FlashSectionService } from "../home/components/main/flash-section/flash
 import { ProductCardService } from "../../shared/components/product-card/product-card.service";
 import { SkeletonModule } from "primeng/skeleton";
 import { ProgressSpinnerModule } from "primeng/progressspinner";
+import { getResourceById, Resources } from "../../resources";
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from "primeng/api";
 
 @Component({
   selector: 'app-cart',
@@ -25,7 +28,12 @@ import { ProgressSpinnerModule } from "primeng/progressspinner";
     ButtonComponent,
     SecondaryButtonComponent,
     SkeletonModule,
-    ProgressSpinnerModule
+    ProgressSpinnerModule,
+    RouterLink,
+    ToastModule
+  ],
+  providers:[
+    MessageService
   ],
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.scss'
@@ -35,6 +43,8 @@ export class CartComponent extends BaseLoadComponent<any> {
 
   service = inject(FlashSectionService);
   productService = inject(ProductCardService);
+  messageService = inject(MessageService);
+  total:number = 0;
 
   arrId: number[] = this.productService.arrCart;
 
@@ -48,20 +58,44 @@ export class CartComponent extends BaseLoadComponent<any> {
     this.products = newData;
     this.products.forEach((item: any, index: number) => {
       item.quantity = 0;
-      item.total = item.price;
+      item.total = item.sum;
       this.arrId.forEach((id: number, index: number) => {
         if (item.id === id) {
           item.quantity++;
         }
       });
-      item.total = item.price * item.quantity;
+      item.total = item.sum * item.quantity;
+      this.total += item.total;
     });
-    this.productService.totalProducts.set(this.products);
   }
-  onChange(id:number,value:number):void {
-    this.productService.onCartChange(id,value);
-    this.products.forEach((item:any) => {
-      item.total = item.price * item.quantity;
-    })
+  show():void {
+    this.messageService.add({ severity:'success',summary:'Success',detail:'Your order has been shipped and is on its way!',life:3000 });
+    this.products = [];
+    this.arrId = [];
+    this.productService.arrCart = [];
+    this.productService.uniqueCart = [];
+    localStorage.removeItem('cart');
   }
+
+  navigate(id:number, event:any):void {
+    if(event.target.id !== 'input'){
+      const url = getResourceById(Resources.Detail,id.toString());
+      this.router.navigateByUrl(url);
+    }
+  }
+
+  onChange(id:number,value:number, input:HTMLInputElement):void {
+    if(value >= 0){
+      let sum = 0;
+      this.products.forEach((item:any) => {
+        item.total = item.sum * item.quantity;
+        sum += item.sum * item.quantity;
+      });
+      this.total = sum;
+      this.productService.onCartChange(id,value,this.products);
+    }
+  }
+
+  protected readonly resources = Resources;
+
 }

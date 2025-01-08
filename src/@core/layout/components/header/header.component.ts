@@ -39,7 +39,6 @@ export class HeaderComponent extends BaseLoadComponent<any>{
     ProductService = inject(FlashSectionService);
     SearchService = inject(SearchService);
     ProductCardService = inject(ProductCardService);
-    totalProducts:number = this.ProductCardService.totalProducts().length;
     should:boolean = true;
 
     override getData(): Observable<any> {

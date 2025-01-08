@@ -12,3 +12,10 @@
         gap: 20px;
     }
 }
+.table-row{
+    transition: all 0.2s ease;
+    cursor: pointer;
+    &:hover{
+        background-color: rgb(235, 235, 235) !important;
+    }
+}

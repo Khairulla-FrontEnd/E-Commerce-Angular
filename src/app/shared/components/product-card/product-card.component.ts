@@ -37,32 +37,21 @@ export class ProductCardComponent implements OnInit {
       if (event.target.id !== 'star' && event.target.id !== 'AddCart') {
       const url = getResourceById(Resources.Detail,id); 
       this.router.navigate([url]);
-      this.service.sum = this.Sum;
+      this.service.sum = this.product.sum;
       this.service.value = this.value;
     }
   }
 
   arrId:number[] = [];
   value: number = Math.floor(Math.random() * 5) + 2;
-  foiz: number = Math.floor(Math.random() * 40) + 10;
-  real: any;
-  yigindi: any;
-  Sum: any;
-  OldSum: any;
+  
   ngOnInit(): void {
     const arrId = localStorage.getItem('wishlist');
     if(arrId) {
       this.arrId = JSON.parse(arrId);
       if(this.arrId.includes(this.product.id)) this.product.icon = 'bi-heart-fill text-danger';
     }
-    this.yigindi = Math.round(((this.product.price) / 100) * this.foiz);
-    this.real = Math.round(
-      (this.product.price - this.yigindi) / 12
-    ).toLocaleString();
-    this.OldSum = Math.round(this.product.price).toLocaleString();
-    this.Sum = Math.round(
-      this.product.price - this.yigindi
-    ).toLocaleString();
+   
   }
   handleError(img: HTMLImageElement): void {
     img.src = './assets/media/default-image/default-image.jpg';

@@ -21,13 +21,13 @@ export class HeroComponent implements OnInit{
     constructor(private router:Router) { }
     ngOnInit(): void {
         var swiper = new Swiper('.mySwiper2',{
-            cssMode:true,
+            loop:true,
             pagination: {
                 el: ".swiper-pagination",
                 clickable:true
               },
             modules:[Pagination, Navigation],
-            autoplay:true
+            autoplay:true,
         })
     }
     reloadPage():void{
