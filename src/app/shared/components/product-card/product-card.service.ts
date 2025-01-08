@@ -39,7 +39,7 @@ export class ProductCardService {
     return id;
   }
 
-  onCartChange(id:number,quantity:number,products:any[]):any[] {
+  onCartChange(id:number,quantity:number):void {
     const productId:number[] = this.arrCart.filter((item:number) => item === id);
     const otherProducts:number[] = this.arrCart.filter((item:number) => item !== id);
     if(quantity > productId.length){
@@ -49,7 +49,6 @@ export class ProductCardService {
     }
     this.arrCart = productId.concat(otherProducts);
     localStorage.setItem('cart',JSON.stringify(this.arrCart));
-    return products;
   }
 
   giveWishlistData():number[]{
